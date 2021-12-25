@@ -1,0 +1,28 @@
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#amk {
+  font-family: sans-serif;
+  font-size: 100px;
+}
+
+#yellow {
+  color: #fecb00;
+}
+
+#green {
+  color: #34b233;
+}
+
+#red {
+  color: #ea2839;
+}
