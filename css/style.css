@@ -9,10 +9,12 @@ body {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  background-image: url("https://picsum.photos/2000/2000");
+  background-size: auto;
 }
 #amk {
   font-family: sans-serif;
-  font-size: 100px;
+  font-size: 2.6em;
 }
 
 #yellow {
