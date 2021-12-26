@@ -28,6 +28,7 @@ function setBackground(setNow) {
     checkBackgroundImageIsLoaded(gBackgroundImg);
     return false;
   }
+  setWidthAndHeight();
   var amkElement = document.getElementById("amk");
   amkElement.style.backgroundImage = "url(" + gBackgroundImg + ")";
   gBackgroundImg = "";
