@@ -1,5 +1,5 @@
 console.log("www.aungmyokyaw.com");
-var gBackgroundImg = backgroundImgUrlGen();
+var gBackgroundImg = "";
 function setWidthAndHeight() {
   var amkElement = document.getElementById("amk");
   var overlay = document.getElementById("overlay");
@@ -23,13 +23,14 @@ function backgroundImgUrlGen() {
 }
 
 function setBackground(setNow) {
-  if (!setNow) {
+  if (!setNow && !gBackgroundImg) {
     gBackgroundImg = backgroundImgUrlGen();
     checkBackgroundImageIsLoaded(gBackgroundImg);
     return false;
   }
   var amkElement = document.getElementById("amk");
   amkElement.style.backgroundImage = "url(" + gBackgroundImg + ")";
+  gBackgroundImg = "";
 }
 function checkBackgroundImageIsLoaded(srcUrl) {
   var backgroundImageElement = document.getElementById("backgroundImageLoader");
@@ -39,5 +40,5 @@ function checkBackgroundImageIsLoaded(srcUrl) {
   };
 }
 setWidthAndHeight();
-setBackground(backgroundImgUrlGen(), false);
+setBackground(false);
 window.setInterval(setBackground, 8000, false);
