@@ -23,7 +23,7 @@ function backgroundImgUrlGen() {
 }
 
 function setBackground(setNow) {
-  if (!setNow && !gBackgroundImg) {
+  if (!setNow || !gBackgroundImg) {
     gBackgroundImg = backgroundImgUrlGen();
     checkBackgroundImageIsLoaded(gBackgroundImg);
     return false;
