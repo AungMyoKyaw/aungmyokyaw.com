@@ -40,5 +40,4 @@ function checkBackgroundImageIsLoaded(srcUrl) {
   };
 }
 setWidthAndHeight();
-setBackground(false);
 window.setInterval(setBackground, 8000, false);
