@@ -3,7 +3,7 @@ a {
   font-weight: bolder;
 }
 body {
-  background-image: url("https://picsum.photos/2000/2000?blur=1");
+  background-image: url("https://picsum.photos/2000.jpg?blur=1&random=1");
   background-size: cover;
   background-position: 50% 50%;
   margin: 0;
