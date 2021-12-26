@@ -3,10 +3,16 @@ a {
   font-weight: bolder;
 }
 body {
-  background-image: url("https://picsum.photos/2000.jpg?blur=1&random=1");
+  background: black;
+  background-image: url("https://picsum.photos/2000.jpg?random=1");
   background-size: cover;
   background-position: 50% 50%;
   margin: 0;
+}
+
+#overlay {
+  background: black;
+  opacity: 0.8;
 }
 
 #content {
