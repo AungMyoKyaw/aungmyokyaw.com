@@ -1,11 +1,11 @@
 a {
   text-decoration: none;
-  font-weight: bold;
-  color: black;
+  font-weight: bolder;
 }
 body {
-  background-image: url("https://picsum.photos/2000/2000");
+  background-image: url("https://picsum.photos/2000/2000?blur=1");
   background-size: cover;
+  background-position: 50% 50%;
   margin: 0;
 }
 
@@ -18,7 +18,7 @@ body {
 }
 
 #amk {
-  font-family: sans-serif;
+  font-family: "Permanent Marker", serif;
   font-size: 4.4em;
   margin: 0;
 }
