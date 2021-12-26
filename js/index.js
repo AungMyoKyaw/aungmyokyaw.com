@@ -42,3 +42,4 @@ function checkBackgroundImageIsLoaded(srcUrl) {
 }
 setWidthAndHeight();
 window.setInterval(setBackground, 8000, false);
+window.addEventListener("resize", setWidthAndHeight);
