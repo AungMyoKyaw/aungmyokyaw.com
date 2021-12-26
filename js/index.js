@@ -37,7 +37,9 @@ function checkBackgroundImageIsLoaded(srcUrl) {
   var backgroundImageElement = document.getElementById("backgroundImageLoader");
   backgroundImageElement.src = srcUrl;
   backgroundImageElement.onload = function () {
-    setBackground(backgroundImageElement.complete);
+    if (backgroundImageElement.complete) {
+      setBackground(true);
+    }
   };
 }
 setWidthAndHeight();
