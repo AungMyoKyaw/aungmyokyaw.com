@@ -4,4 +4,4 @@
 
 https://www.aungmyokyaw.com
 
-<img src="./screenshot/screenshot.gif" alt="aungmyokyaw.com" align="right" width="100%">
+<img src="./screenshot/screenshot.gif" alt="aungmyokyaw.com" align="left" width="400">
