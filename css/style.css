@@ -4,17 +4,23 @@ a {
   color: black;
 }
 body {
+  background-image: url("https://picsum.photos/2000/2000");
+  background-size: cover;
+  margin: 0;
+}
+
+#content {
   position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background-image: url("https://picsum.photos/2000/2000");
-  background-size: auto;
 }
+
 #amk {
   font-family: sans-serif;
-  font-size: 2.6em;
+  font-size: 4.4em;
+  margin: 0;
 }
 
 #yellow {
