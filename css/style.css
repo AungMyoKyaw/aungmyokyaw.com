@@ -7,7 +7,6 @@ a:hover {
 }
 body {
   background: black;
-  background-image: url("https://picsum.photos/2000.jpg?random=1");
   transition: background-image 1s ease-in-out;
   background-size: cover;
   background-position: 50% 50%;

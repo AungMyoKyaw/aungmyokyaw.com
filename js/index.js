@@ -49,5 +49,6 @@ Ielement.onclick = function () {
   document.getElementById("content").style.opacity = "0";
   document.getElementById("overlay").style.opacity = 0.3;
 };
+setBackground(false)
 window.setInterval(setBackground, 8000, false);
 window.addEventListener("resize", setWidthAndHeight);
