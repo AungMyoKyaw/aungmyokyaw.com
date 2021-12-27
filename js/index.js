@@ -47,8 +47,8 @@ var Ielement = document.getElementById("yellow");
 Ielement.onclick = function () {
   document.getElementById("content").style.transition = "display 0.2s linear";
   document.getElementById("content").style.opacity = "0";
-  document.getElementById("overlay").style.opacity = 0.3;
+  document.getElementById("overlay").style.opacity = 0.1;
 };
-setBackground(false)
+setBackground(false);
 window.setInterval(setBackground, 8000, false);
 window.addEventListener("resize", setWidthAndHeight);
