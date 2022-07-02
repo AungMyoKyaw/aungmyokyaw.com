@@ -4,7 +4,6 @@
     const backgroundImgWidth = window.innerWidth * 2.0;
     const backgroundImgHeight = window.innerHeight * 2.0;
     const backgroundImgUrl = `https://picsum.photos/${backgroundImgWidth}/${backgroundImgHeight}.jpg?random=${Math.floor(Math.random() * 1e3)}`;
-    console.log(backgroundImgUrl);
     return backgroundImgUrl;
   }
 
