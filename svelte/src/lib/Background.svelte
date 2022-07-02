@@ -1,8 +1,8 @@
 <script>
   let backgroundImageMediaLoaded = false
   function backgroundImgUrlGen() {
-    const backgroundImgWidth = window.innerWidth * 2.5;
-    const backgroundImgHeight = window.innerHeight * 2.5;
+    const backgroundImgWidth = Math.floor(window.innerWidth * 2.5);
+    const backgroundImgHeight = Math.floor(window.innerHeight * 2.5);
     const randomNum = Math.floor(Math.random() * 1e3);
     const backgroundImgUrl = `https://picsum.photos/${backgroundImgWidth}/${backgroundImgHeight}.jpg?random=${randomNum}`;
     return backgroundImgUrl;
