@@ -19,7 +19,7 @@
       backgroundImgUrl = tmpBackgroundImgUrl;
       setTimeout(() => {
         tmpBackgroundImgUrl = backgroundImgUrlGen();
-      }, 4000);
+      }, 3600);
     }
   }
 
