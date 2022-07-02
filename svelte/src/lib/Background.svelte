@@ -1,8 +1,8 @@
 <script>
   let backgroundImageMediaLoaded = false
   function backgroundImgUrlGen() {
-    const backgroundImgWidth = window.innerWidth * 2.0;
-    const backgroundImgHeight = window.innerHeight * 2.0;
+    const backgroundImgWidth = window.innerWidth * 2.5;
+    const backgroundImgHeight = window.innerHeight * 2.5;
     const randomNum = Math.floor(Math.random() * 1e3);
     const backgroundImgUrl = `https://picsum.photos/${backgroundImgWidth}/${backgroundImgHeight}.jpg?random=${randomNum}`;
     return backgroundImgUrl;
@@ -15,11 +15,13 @@
   function imageOnLoadHandler(event){
     if(event.srcElement.complete){
       backgroundImageMediaLoaded = true;
-      overlayOpacity = 0.1;
+      overlayOpacity = 0.05;
       backgroundImgUrl = tmpBackgroundImgUrl;
       setTimeout(() => {
         tmpBackgroundImgUrl = backgroundImgUrlGen();
       }, 3600);
+    } else {
+      tmpBackgroundImgUrl = backgroundImgUrlGen();
     }
   }
 
@@ -41,7 +43,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transition: background-image 1s ease-in-out;
+    transition: background-image 1.3s ease-in-out;
     background-position: 50% 50%;
   }
   .overlay {
