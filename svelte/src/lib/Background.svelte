@@ -1,7 +1,7 @@
 <script>
   let backgroundImageMediaLoaded = false
   function backgroundImgUrlGen(lowres = false) {
-    let times = 3.5;
+    let times = 2.5;
     if(lowres){
       times = 1;
     }
