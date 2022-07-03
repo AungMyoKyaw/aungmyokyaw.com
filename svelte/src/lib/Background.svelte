@@ -1,9 +1,13 @@
 <script>
   let backgroundImageMediaLoaded = false
-  function backgroundImgUrlGen() {
-    const backgroundImgWidth = Math.floor(window.innerWidth * 2.5);
-    const backgroundImgHeight = Math.floor(window.innerHeight * 2.5);
-    const randomNum = Math.floor(Math.random() * 1e3);
+  function backgroundImgUrlGen(lowres = false) {
+    let times = 3.5;
+    if(lowres){
+      times = 1;
+    }
+    const backgroundImgWidth = Math.floor(window.innerWidth * times);
+    const backgroundImgHeight = Math.floor(window.innerHeight * times);
+    const randomNum = Math.floor(Math.random() * 1e8);
     const backgroundImgUrl = `https://picsum.photos/${backgroundImgWidth}/${backgroundImgHeight}.jpg?random=${randomNum}`;
     return backgroundImgUrl;
   }
@@ -25,13 +29,17 @@
     }
   }
 
+  function imageOnLoadErrorHandler(event){
+    tmpBackgroundImgUrl = backgroundImgUrlGen(true);
+  }
+
 </script>
 
 {#if backgroundImageMediaLoaded}
   <div style="background-image: url({backgroundImgUrl})"></div>
 {/if}
 <div class="overlay" style="opacity: {overlayOpacity}"></div>
-<img src={tmpBackgroundImgUrl} alt="" style="display: none" on:load={imageOnLoadHandler}/>
+<img src={tmpBackgroundImgUrl} alt="" style="display: none" on:load={imageOnLoadHandler} on:error={imageOnLoadErrorHandler}/>
 
 <style>
   div {
