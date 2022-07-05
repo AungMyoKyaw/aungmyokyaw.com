@@ -1,7 +1,7 @@
 # aungmyokyaw
 
 > i know nothing
+> i write code
 
 https://www.aungmyokyaw.com
 
-<img src="./screenshot/screenshot.gif" alt="aungmyokyaw.com" align="left" width="400">
