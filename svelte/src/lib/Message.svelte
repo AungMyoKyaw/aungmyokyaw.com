@@ -6,10 +6,10 @@
 </svelte:head>
 
 <div id="content">
-  <a href="https://blog.aungmyokyaw.com" id="yellow">I</a>
-  <a href="https://blog.aungmyokyaw.com" id="green" target="_blank">KNOW</a>
+  <a href="https://blog.aungmyokyaw.com" id="yellow">i</a>
+  <a href="https://blog.aungmyokyaw.com" id="green" target="_blank">write</a>
   <a href="https://github.com/AungMyoKyaw" id="red" target="_blank"
-    >NOTHING</a
+    >code</a
   >
 </div>
 
