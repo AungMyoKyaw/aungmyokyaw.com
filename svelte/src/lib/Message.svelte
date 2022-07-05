@@ -7,9 +7,9 @@
 
 <div id="content">
   <a href="https://blog.aungmyokyaw.com" id="yellow">i</a>
-  <a href="https://blog.aungmyokyaw.com" id="green" target="_blank">write</a>
+  <a href="https://blog.aungmyokyaw.com" id="green" target="_blank">etirw</a>
   <a href="https://github.com/AungMyoKyaw" id="red" target="_blank"
-    >code</a
+    >edoc</a
   >
 </div>
 

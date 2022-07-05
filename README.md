@@ -2,7 +2,7 @@
 
 > i know nothing
 
-> i write code
+> i etirw edoc
 
 https://www.aungmyokyaw.com
 
