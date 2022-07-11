@@ -28,6 +28,7 @@
   a {
     text-decoration: none;
     font-weight: bolder;
+    background-color: transparent;
   }
 
   a:hover {
