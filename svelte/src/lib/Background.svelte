@@ -60,6 +60,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
+    /* https://cssgradient.io/swatches/ */
+    background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
   }
 </style>
