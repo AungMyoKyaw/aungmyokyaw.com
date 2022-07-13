@@ -1,14 +1,13 @@
 <svelte:head>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Permanent Marker"
-  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
 </svelte:head>
 
 <div id="content">
-  <a href="#" id="yellow">i</a>
-  <a href="https://blog.aungmyokyaw.com" id="green" target="_blank">write</a>
-  <a href="https://github.com/AungMyoKyaw" id="red" target="_blank">code</a>
+  <a href="#" id="white">i</a>
+  <a href="https://blog.aungmyokyaw.com" id="white" target="_blank">write</a>
+  <a href="https://github.com/AungMyoKyaw" id="white" target="_blank">code</a>
 </div>
 
 <style>
@@ -18,19 +17,23 @@
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    font-family: "Permanent Marker";
+    font-family: 'Hi Melody', cursive;
     font-size: 4.4em;
+    font-weight: bolder;
     margin: 0;
+    background-color: transparent;
   }
 
   a {
     text-decoration: none;
-    font-weight: bolder;
-    background-color: transparent;
   }
 
   a:hover {
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  #white {
+    color: white;
   }
 
   #yellow {
