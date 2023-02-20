@@ -9,6 +9,7 @@
   <a href="https://blog.aungmyokyaw.com" id="white" target="_blank">write</a>
   <a href="https://github.com/AungMyoKyaw" id="white" target="_blank">code</a>
   <a rel="me" href="https://burma.social/@aungmyokyaw" target="_blank" style="display: none;">Mastodon</a>
+  <a rel="me" href="https://mastodon.social/@AungMyoKyaw" target="_blank" style="display: none;">Mastodon</a>
 </div>
 
 <style>
