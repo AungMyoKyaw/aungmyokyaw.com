@@ -8,10 +8,6 @@
   <a href="#" id="white">i</a>
   <a href="https://blog.aungmyokyaw.com" id="white" target="_blank">write</a>
   <a href="https://github.com/AungMyoKyaw" id="white" target="_blank">code</a>
-  <div>
-    <a rel="me" href="https://burma.social/@aungmyokyaw" target="_blank">burma.social</a>
-    <a rel="me" href="https://mastodon.social/@AungMyoKyaw" target="_blank">mastodon.social</a>
-  </div>
 </div>
 
 <style>
