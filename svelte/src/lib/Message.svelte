@@ -9,7 +9,6 @@
   <a href="https://github.com/AungMyoKyaw" id="green" target="_blank">Programmer</a>
   <a href="https://blog.aungmyokyaw.com" id="red" target="_blank">Lifelong Learner</a>
   <a href="https://github.com/AungMyoKyaw" id="white" target="_blank">Tech Enthusiast</a>
-  <a href="#" id="yellow" target="_blank">Buddhism Enthusiast</a>
 </div>
 
 <style>
