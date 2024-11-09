@@ -21,29 +21,59 @@ const profileData = {
   ],
 };
 
-const educationData = {
-  degree: "Bachelor of Engineering",
-  university: "University located in Myanmar",
-  graduationYear: "2016",
-};
+const educationData = [
+  {
+    degree: "Bachelor of Engineering",
+    university: "Aerospace Engineering University",
+    graduationYear: "2016",
+  },
+  {
+    degree: "Master of Computer Science",
+    university: "Prestigious Tech University",
+    graduationYear: "2020",
+  },
+];
 
 const skillsData = ["I can think", "I can wait", "I can fast"];
 
 const moocsData = {
   total: 1000,
-  specializationTitle: "JavaScript Fundamentals Specialization",
-  specializationLink: "specialization-certificate-link",
-  courses: [
+  items: [
     {
-      title: "JavaScript Basics",
-      certificateLink: "certificate-link-1",
+      courseTitle: "Python Basics",
+      type: "Course",
+      status: "In Progress",
+      certificateLink: "#",
+      completedDate: "2020-06-01",
     },
     {
-      title: "Advanced JavaScript",
-      certificateLink: "certificate-link-2",
+      courseTitle: "JavaScript Fundamentals Specialization",
+      type: "Bundle",
+      status: "Completed",
+      certificateLink: "specialization-certificate-link",
+      completedDate: "2020-06-01",
+      courses: [
+        {
+          title: "JavaScript Basics",
+          certificateLink: "certificate-link-1",
+          completedDate: "2020-06-01",
+        },
+        {
+          title: "Advanced JavaScript",
+          certificateLink: "certificate-link-2",
+          completedDate: "2020-06-01",
+        },
+      ],
+    },
+    {
+      courseTitle: "Python Basics",
+      type: "Course",
+      status: "Completed",
+      certificateLink: "certificate-link-3",
+      completedDate: "2020-06-01",
     },
   ],
-  allMoocsLink: "all-moocs-link",
+  moreLink: "https://www.coursera.org/learner/aungmyokyaw",
 };
 
 const blogPostsData = [
@@ -97,12 +127,17 @@ const EducationSection: React.FC<{ education: typeof educationData }> = ({
     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 sm:mb-6">
       Education
     </h2>
-    <div className="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-md">
-      <p className="text-lg sm:text-xl font-medium">{education.degree}</p>
-      <p className="text-gray-600">
-        {education.university}, {education.graduationYear}
-      </p>
-    </div>
+    {education.map((item, index) => (
+      <div
+        key={index}
+        className="bg-gray-50 p-4 sm:p-6 mb-4 rounded-lg shadow-md"
+      >
+        <p className="text-lg sm:text-xl font-medium">{item.degree}</p>
+        <p className="text-gray-600">
+          {item.university}, {item.graduationYear}
+        </p>
+      </div>
+    ))}
   </section>
 );
 
@@ -135,48 +170,70 @@ const MOOCsSection: React.FC<{ moocs: typeof moocsData }> = ({ moocs }) => (
       Total Completed MOOCs: {moocs.total}
     </p>
     <div className="space-y-6">
-      <div className="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-md">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
-          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">
-            {moocs.specializationTitle}
-          </h3>
-          <a
-            href={moocs.specializationLink}
-            target="_blank"
-            className="text-gray-700 hover:underline mt-2 sm:mt-0"
-            rel="noreferrer"
-          >
-            View Certificate
-          </a>
-        </div>
-        <div className="space-y-4">
-          {moocs.courses.map((course, index) => (
-            <div
-              key={index}
-              className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white rounded-lg p-4 border border-gray-200"
+      {moocs.items.map((item, index) => (
+        <div key={index} className="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-md">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">
+              {item.courseTitle}
+            </h3>
+            {item.status === "Completed" && (
+              <p className="text-gray-500 text-sm">
+                Completed on:{" "}
+                {new Date(item.completedDate).toLocaleDateString()}
+              </p>
+            )}
+            <a
+              href={item.certificateLink}
+              target="_blank"
+              className={`text-gray-700 hover:underline mt-2 sm:mt-0 ${
+                item.status === "In Progress"
+                  ? "pointer-events-none text-gray-400"
+                  : ""
+              }`}
+              rel="noreferrer"
             >
-              <p className="text-base sm:text-lg font-medium">{course.title}</p>
-              <a
-                href={course.certificateLink}
-                target="_blank"
-                className="text-gray-700 hover:underline mt-2 sm:mt-0"
-                rel="noreferrer"
-              >
-                View Certificate
-              </a>
+              {item.status === "In Progress"
+                ? "In Progress"
+                : "View Certificate"}
+            </a>
+          </div>
+          {item.type === "Bundle" && (
+            <div className="space-y-4">
+              {item.courses.map((course, courseIndex) => (
+                <div
+                  key={courseIndex}
+                  className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white rounded-lg p-4 border border-gray-200"
+                >
+                  <p className="text-base sm:text-lg font-medium">
+                    {course.title}
+                  </p>
+                  <p className="text-gray-500 text-sm">
+                    Completed on:{" "}
+                    {new Date(course.completedDate).toLocaleDateString()}
+                  </p>
+                  <a
+                    href={course.certificateLink}
+                    target="_blank"
+                    className="text-gray-700 hover:underline mt-2 sm:mt-0"
+                    rel="noreferrer"
+                  >
+                    View Certificate
+                  </a>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-        <div className="mt-4 text-center">
-          <a
-            href={moocs.allMoocsLink}
-            target="_blank"
-            className="inline-block text-sm sm:text-base text-gray-600 hover:text-gray-800 underline transition duration-300 font-medium"
-            rel="noreferrer"
-          >
-            View All Courses
-          </a>
-        </div>
+      ))}
+      <div className="mt-4 text-center">
+        <a
+          href={moocs.moreLink}
+          target="_blank"
+          className="inline-block text-sm sm:text-base text-gray-600 hover:text-gray-800 underline transition duration-300 font-medium"
+          rel="noreferrer"
+        >
+          View All Courses
+        </a>
       </div>
     </div>
   </section>
