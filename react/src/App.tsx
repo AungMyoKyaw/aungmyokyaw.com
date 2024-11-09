@@ -53,17 +53,17 @@ const profileData: ProfileData = {
   socialLinks: [
     {
       href: "https://www.linkedin.com/in/aungmyokyaw/",
-      iconClass: "fab fa-linkedin",
+      iconClass: "fab fa-linkedin"
     },
     {
       href: "https://github.com/AungMyoKyaw",
-      iconClass: "fab fa-github",
+      iconClass: "fab fa-github"
     },
     {
       href: "https://www.coursera.org/learner/aungmyokyaw",
-      iconClass: "fas fa-graduation-cap",
-    },
-  ],
+      iconClass: "fas fa-graduation-cap"
+    }
+  ]
 };
 
 const educationData: EducationItem[] = [
@@ -71,17 +71,17 @@ const educationData: EducationItem[] = [
     degree: "Master of Science in Information Technology (MSIT)",
     university: "University of the People",
     status: "In Progress",
-    graduationYear: "",
+    graduationYear: ""
   },
   {
     degree: "Applied Data Science Lab",
     university: "WorldQuant University",
-    graduationYear: "2023",
+    graduationYear: "2023"
   },
   {
     degree: "Full Stack Web Development Certification",
     university: "freeCodeCamp",
-    graduationYear: "2017",
+    graduationYear: "2017"
   },
   {
     degree:
@@ -90,15 +90,15 @@ const educationData: EducationItem[] = [
     graduationYear: "2016",
     GPA: "4.34 out of 5",
     distinctions: ["Aerospace Propulsion", "Design Project"],
-    finalProject: "Design and Construction of Tricopter",
+    finalProject: "Design and Construction of Tricopter"
   },
   {
     degree: "High School Diploma",
     school: "No.3, Basic Education High School, Satthwa",
     graduationYear: "2010",
     grade: "438 out of 600",
-    distinctions: ["Mathematics", "Chemistry", "Biology"],
-  },
+    distinctions: ["Mathematics", "Chemistry", "Biology"]
+  }
 ];
 
 const skillsData: string[] = ["I can think", "I can wait", "I can fast"];
@@ -110,7 +110,7 @@ const moocsData: MOOCsData = {
       courseTitle: "Lorem Ipsum",
       type: "Course",
       status: "In Progress",
-      certificateLink: "#",
+      certificateLink: "#"
     },
     {
       courseTitle: "Lorem Ipsum Specialization",
@@ -120,56 +120,56 @@ const moocsData: MOOCsData = {
       courses: [
         {
           title: "Lorem Ipsum Course",
-          certificateLink: "certificate-link-1",
+          certificateLink: "certificate-link-1"
         },
         {
           title: "Lorem Ipsum Course",
-          certificateLink: "certificate-link-2",
-        },
-      ],
+          certificateLink: "certificate-link-2"
+        }
+      ]
     },
     {
       courseTitle: "Lorem Ipsum",
       type: "Course",
       status: "Completed",
-      certificateLink: "certificate-link-3",
-    },
+      certificateLink: "certificate-link-3"
+    }
   ],
-  moreLink: "https://www.coursera.org/learner/aungmyokyaw",
+  moreLink: "https://www.coursera.org/learner/aungmyokyaw"
 };
 
 const blogPostsData: BlogPost[] = [
   {
     title: "Building Scalable Web Apps",
-    link: "recent-blog-post-link-1",
+    link: "recent-blog-post-link-1"
   },
   {
     title: "Intro to Machine Learning",
-    link: "recent-blog-post-link-2",
-  },
+    link: "recent-blog-post-link-2"
+  }
 ];
 
 // ProfileHeader Component
 const ProfileHeader: React.FC<{ profile: ProfileData }> = ({ profile }) => (
-  <header id="profile-header" className="text-center mb-10 sm:mb-16">
+  <header id="profile-header" className="mb-10 text-center sm:mb-16">
     <img
       src={profile.image}
       alt={profile.name}
-      className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full mx-auto mb-6 border-4 border-[#146321] shadow-lg"
+      className="mx-auto mb-6 h-28 w-28 rounded-full border-4 border-[#146321] shadow-lg sm:h-36 sm:w-36 md:h-44 md:w-44"
     />
-    <h1 className="text-4xl md:text-5xl font-semibold text-[#146321]">
+    <h1 className="text-4xl font-semibold text-[#146321] md:text-5xl">
       {profile.name}
     </h1>
-    <p className="text-lg md:text-xl mt-3 text-[#146321] font-light">
+    <p className="mt-3 text-lg font-light text-[#146321] md:text-xl">
       {profile.title}
     </p>
-    <div className="flex justify-center space-x-5 sm:space-x-7 mt-5">
+    <div className="mt-5 flex justify-center space-x-5 sm:space-x-7">
       {profile.socialLinks.map((link, index) => (
         <a
           key={index}
           href={link.href}
           target="_blank"
-          className="text-[#146321] hover:text-[#146321] transition duration-300"
+          className="text-[#146321] transition duration-300 hover:text-[#146321]"
           rel="noreferrer"
         >
           <i className={`${link.iconClass} fa-2x`}></i>
@@ -181,31 +181,31 @@ const ProfileHeader: React.FC<{ profile: ProfileData }> = ({ profile }) => (
 
 // EducationSection Component
 const EducationSection: React.FC<{ education: EducationItem[] }> = ({
-  education,
+  education
 }) => (
   <section id="education-section" className="mb-12">
-    <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
+    <h2 className="mb-6 border-b-2 border-[#146321]/30 pb-3 text-3xl font-bold text-[#146321] md:text-4xl">
       Education
     </h2>
     {education.map((item, index) => (
       <div
         key={index}
-        className="p-6 mb-6  rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+        className="mb-6 rounded-lg p-6 shadow-md transition-shadow duration-300 hover:shadow-lg"
       >
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+        <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
           <div>
             <p className="text-2xl font-semibold text-[#146321]">
               {item.degree}
             </p>
-            <p className="text-lg text-[#146321]/80 mb-2">{item.university}</p>
+            <p className="mb-2 text-lg text-[#146321]/80">{item.university}</p>
             {item.status && (
-              <p className="italic text-sm text-[#146321]/60">
+              <p className="text-sm italic text-[#146321]/60">
                 Status: {item.status}
               </p>
             )}
           </div>
           {item.graduationYear && (
-            <p className="text-md font-medium text-[#146321] mt-2 md:mt-0">
+            <p className="text-md mt-2 font-medium text-[#146321] md:mt-0">
               Class of {item.graduationYear}
             </p>
           )}
@@ -216,7 +216,7 @@ const EducationSection: React.FC<{ education: EducationItem[] }> = ({
         {item.distinctions && item.distinctions.length > 0 && (
           <div className="mt-4">
             <p className="text-md font-medium text-[#146321]">Distinctions:</p>
-            <ul className="list-disc list-inside ml-4 text-[#146321]/80">
+            <ul className="ml-4 list-inside list-disc text-[#146321]/80">
               {item.distinctions.map((distinction, idx) => (
                 <li key={idx}>{distinction}</li>
               ))}
@@ -237,14 +237,14 @@ const EducationSection: React.FC<{ education: EducationItem[] }> = ({
 // SkillsSection Component
 const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
   <section id="skills-section" className="mb-12">
-    <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
+    <h2 className="mb-6 border-b-2 border-[#146321]/30 pb-3 text-3xl font-bold text-[#146321] md:text-4xl">
       Skills
     </h2>
     <div className="flex flex-wrap gap-3">
       {skills.map((skill, index) => (
         <span
           key={index}
-          className="bg-[#146321]/20 text-[#146321] px-4 py-2 rounded-full text-lg font-medium shadow-sm hover:bg-[#146321]/30 transition duration-300"
+          className="rounded-full bg-[#146321]/20 px-4 py-2 text-lg font-medium text-[#146321] shadow-sm transition duration-300 hover:bg-[#146321]/30"
         >
           {skill}
         </span>
@@ -256,23 +256,23 @@ const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
 // MOOCsSection Component
 const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
   <section id="moocs-section" className="mb-12">
-    <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
+    <h2 className="mb-6 border-b-2 border-[#146321]/30 pb-3 text-3xl font-bold text-[#146321] md:text-4xl">
       Completed MOOCs
     </h2>
-    <p className="text-[#146321] text-lg font-light mb-4">
+    <p className="mb-4 text-lg font-light text-[#146321]">
       Total Completed MOOCs: {moocs.total}
     </p>
     <div className="space-y-6">
       {moocs.items.map((item, index) => (
-        <div key={index} className="p-6 rounded-lg shadow-md">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-            <h3 className="text-xl md:text-2xl font-semibold text-[#146321]">
+        <div key={index} className="rounded-lg p-6 shadow-md">
+          <div className="mb-4 flex flex-col items-start justify-between md:flex-row md:items-center">
+            <h3 className="text-xl font-semibold text-[#146321] md:text-2xl">
               {item.courseTitle}
             </h3>
             <a
               href={item.certificateLink}
               target="_blank"
-              className={`text-[#146321] hover:underline mt-2 md:mt-0 ${
+              className={`mt-2 text-[#146321] hover:underline md:mt-0 ${
                 item.status === "In Progress"
                   ? "pointer-events-none text-[#146321]/50"
                   : ""
@@ -289,15 +289,15 @@ const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
               {item.courses.map((course, courseIndex) => (
                 <div
                   key={courseIndex}
-                  className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white rounded-lg p-4 border border-[#146321]/20"
+                  className="flex flex-col items-start justify-between rounded-lg border border-[#146321]/20 bg-white p-4 md:flex-row md:items-center"
                 >
-                  <p className="text-base md:text-lg font-medium text-[#146321]">
+                  <p className="text-base font-medium text-[#146321] md:text-lg">
                     {course.title}
                   </p>
                   <a
                     href={course.certificateLink}
                     target="_blank"
-                    className="text-[#146321] hover:underline mt-2 md:mt-0"
+                    className="mt-2 text-[#146321] hover:underline md:mt-0"
                     rel="noreferrer"
                   >
                     View Certificate
@@ -312,7 +312,7 @@ const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
         <a
           href={moocs.moreLink}
           target="_blank"
-          className="inline-block text-base text-[#146321] hover:text-[#146321] underline font-medium transition duration-300"
+          className="inline-block text-base font-medium text-[#146321] underline transition duration-300 hover:text-[#146321]"
           rel="noreferrer"
         >
           View All Courses
@@ -325,19 +325,19 @@ const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
 // BlogSection Component
 const BlogSection: React.FC<{ blogPosts: BlogPost[] }> = ({ blogPosts }) => (
   <section id="blog-section" className="mb-12">
-    <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
+    <h2 className="mb-6 border-b-2 border-[#146321]/30 pb-3 text-3xl font-bold text-[#146321] md:text-4xl">
       Recent Blog Posts
     </h2>
     <ul className="space-y-4">
       {blogPosts.map((post, index) => (
         <li
           key={index}
-          className="p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+          className="rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-lg"
         >
           <a
             href={post.link}
             target="_blank"
-            className="text-lg md:text-xl text-[#146321] hover:underline"
+            className="text-lg text-[#146321] hover:underline md:text-xl"
             rel="noreferrer"
           >
             {post.title}
@@ -350,8 +350,8 @@ const BlogSection: React.FC<{ blogPosts: BlogPost[] }> = ({ blogPosts }) => (
 
 // Main App Component
 const App: React.FC = () => (
-  <div className="min-h-screen flex flex-col bg-gray-50 text-[#146321] font-sans">
-    <div className="container mx-auto p-6 max-w-screen-lg flex-grow">
+  <div className="flex min-h-screen flex-col bg-gray-50 font-sans text-[#146321]">
+    <div className="container mx-auto max-w-screen-lg flex-grow p-6">
       <ProfileHeader profile={profileData} />
       <EducationSection education={educationData} />
       <SkillsSection skills={skillsData} />
