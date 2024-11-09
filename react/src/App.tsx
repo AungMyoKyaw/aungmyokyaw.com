@@ -23,14 +23,36 @@ const profileData = {
 
 const educationData = [
   {
-    degree: "Bachelor of Engineering",
-    university: "Aerospace Engineering University",
-    graduationYear: "2016",
+    degree: "Master of Science in Information Technology (MSIT)",
+    university: "University of the People",
+    status: "In Progress",
+    graduationYear: "",
   },
   {
-    degree: "Master of Computer Science",
-    university: "Prestigious Tech University",
-    graduationYear: "2020",
+    degree: "Applied Data Science Lab",
+    university: "WorldQuant University",
+    graduationYear: "2023",
+  },
+  {
+    degree: "Full Stack Web Development Certification",
+    university: "freeCodeCamp",
+    graduationYear: "2017",
+  },
+  {
+    degree:
+      "Bachelor of Engineering (Aerospace - Propulsion and Flight Vehicles)",
+    university: "Myanmar Aerospace Engineering University",
+    graduationYear: "2016",
+    GPA: "4.34 out of 5",
+    distinctions: ["Aerospace Propulsion", "Design Project"],
+    finalProject: "Design and Construction of Tricopter",
+  },
+  {
+    degree: "High School Diploma",
+    school: "No.3, Basic Education High School, Satthwa",
+    graduationYear: "2010",
+    grade: "438 out of 600",
+    distinctions: ["Mathematics", "Chemistry", "Biology"],
   },
 ];
 
@@ -40,37 +62,32 @@ const moocsData = {
   total: 1000,
   items: [
     {
-      courseTitle: "Python Basics",
+      courseTitle: "Lorem Ipsum",
       type: "Course",
       status: "In Progress",
       certificateLink: "#",
-      completedDate: "2020-06-01",
     },
     {
-      courseTitle: "JavaScript Fundamentals Specialization",
+      courseTitle: "Lorem Ipsum Specialization",
       type: "Bundle",
       status: "Completed",
       certificateLink: "specialization-certificate-link",
-      completedDate: "2020-06-01",
       courses: [
         {
-          title: "JavaScript Basics",
+          title: "Lorem Ipsum Course",
           certificateLink: "certificate-link-1",
-          completedDate: "2020-06-01",
         },
         {
-          title: "Advanced JavaScript",
+          title: "Lorem Ipsum Course",
           certificateLink: "certificate-link-2",
-          completedDate: "2020-06-01",
         },
       ],
     },
     {
-      courseTitle: "Python Basics",
+      courseTitle: "Lorem Ipsum",
       type: "Course",
       status: "Completed",
       certificateLink: "certificate-link-3",
-      completedDate: "2020-06-01",
     },
   ],
   moreLink: "https://www.coursera.org/learner/aungmyokyaw",
@@ -95,24 +112,24 @@ const ProfileHeader: React.FC<{ profile: typeof profileData }> = ({
     <img
       src={profile.image}
       alt={profile.name}
-      className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 border-4 border-gray-100 shadow-md"
+      className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full mx-auto mb-6 border-4 border-[#146321] shadow-lg"
     />
-    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
+    <h1 className="text-4xl md:text-5xl font-semibold text-[#146321]">
       {profile.name}
     </h1>
-    <p className="text-base sm:text-lg md:text-xl mt-2 text-gray-500">
+    <p className="text-lg md:text-xl mt-3 text-[#146321] font-light">
       {profile.title}
     </p>
-    <div className="flex justify-center space-x-4 sm:space-x-6 mt-4 sm:mt-6">
+    <div className="flex justify-center space-x-5 sm:space-x-7 mt-5">
       {profile.socialLinks.map((link, index) => (
         <a
           key={index}
           href={link.href}
           target="_blank"
-          className="text-gray-500 hover:text-gray-800 transition duration-300"
+          className="text-[#146321] hover:text-[#146321] transition duration-300"
           rel="noreferrer"
         >
-          <i className={`${link.iconClass} fa-xl sm:fa-2x`}></i>
+          <i className={`${link.iconClass} fa-2x`}></i>
         </a>
       ))}
     </div>
@@ -123,19 +140,56 @@ const ProfileHeader: React.FC<{ profile: typeof profileData }> = ({
 const EducationSection: React.FC<{ education: typeof educationData }> = ({
   education,
 }) => (
-  <section id="education-section" className="mb-10 sm:mb-16">
-    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 sm:mb-6">
+  <section id="education-section" className="mb-12">
+    <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
       Education
     </h2>
     {education.map((item, index) => (
       <div
         key={index}
-        className="bg-gray-50 p-4 sm:p-6 mb-4 rounded-lg shadow-md"
+        className="p-6 mb-6  rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
       >
-        <p className="text-lg sm:text-xl font-medium">{item.degree}</p>
-        <p className="text-gray-600">
-          {item.university}, {item.graduationYear}
-        </p>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <p className="text-2xl font-semibold text-[#146321]">
+              {item.degree}
+            </p>
+            <p className="text-lg text-[#146321]/80 mb-2">
+              {item.university}
+            </p>
+            {item.status && (
+              <p className="italic text-sm text-[#146321]/60">
+                Status: {item.status}
+              </p>
+            )}
+          </div>
+          {item.graduationYear && (
+            <p className="text-md font-medium text-[#146321] mt-2 md:mt-0">
+              Class of {item.graduationYear}
+            </p>
+          )}
+        </div>
+        {item.GPA && (
+          <p className="mt-3 text-sm text-[#146321]/90">
+            GPA: {item.GPA}
+          </p>
+        )}
+        {item.distinctions && item.distinctions.length > 0 && (
+          <div className="mt-4">
+            <p className="text-md font-medium text-[#146321]">Distinctions:</p>
+            <ul className="list-disc list-inside ml-4 text-[#146321]/80">
+              {item.distinctions.map((distinction, idx) => (
+                <li key={idx}>{distinction}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {item.finalProject && (
+          <div className="mt-4">
+            <p className="text-md font-medium text-[#146321]">Final Project:</p>
+            <p className="text-[#146321]/80">{item.finalProject}</p>
+          </div>
+        )}
       </div>
     ))}
   </section>
@@ -143,15 +197,15 @@ const EducationSection: React.FC<{ education: typeof educationData }> = ({
 
 // SkillsSection Component
 const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
-  <section id="skills-section" className="mb-10 sm:mb-16">
-    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 sm:mb-6">
+  <section id="skills-section" className="mb-12">
+    <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
       Skills
     </h2>
-    <div className="flex flex-wrap gap-2 sm:gap-4">
+    <div className="flex flex-wrap gap-3">
       {skills.map((skill, index) => (
         <span
           key={index}
-          className="bg-gray-100 text-gray-800 px-3 py-1 sm:px-4 sm:py-2 rounded-full text-base sm:text-lg font-medium shadow-sm"
+          className="bg-[#146321]/20 text-[#146321] px-4 py-2 rounded-full text-lg font-medium shadow-sm hover:bg-[#146321]/30 transition duration-300"
         >
           {skill}
         </span>
@@ -162,32 +216,26 @@ const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
 
 // MOOCsSection Component
 const MOOCsSection: React.FC<{ moocs: typeof moocsData }> = ({ moocs }) => (
-  <section id="moocs-section" className="mb-10 sm:mb-16">
-    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 sm:mb-6">
+  <section id="moocs-section" className="mb-12">
+    <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
       Completed MOOCs
     </h2>
-    <p className="text-gray-700 text-base sm:text-lg mt-2">
+    <p className="text-[#146321] text-lg font-light mb-4">
       Total Completed MOOCs: {moocs.total}
     </p>
     <div className="space-y-6">
       {moocs.items.map((item, index) => (
-        <div key={index} className="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-md">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
-            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">
+        <div key={index} className="p-6 rounded-lg shadow-md">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+            <h3 className="text-xl md:text-2xl font-semibold text-[#146321]">
               {item.courseTitle}
             </h3>
-            {item.status === "Completed" && (
-              <p className="text-gray-500 text-sm">
-                Completed on:{" "}
-                {new Date(item.completedDate).toLocaleDateString()}
-              </p>
-            )}
             <a
               href={item.certificateLink}
               target="_blank"
-              className={`text-gray-700 hover:underline mt-2 sm:mt-0 ${
+              className={`text-[#146321] hover:underline mt-2 md:mt-0 ${
                 item.status === "In Progress"
-                  ? "pointer-events-none text-gray-400"
+                  ? "pointer-events-none text-[#146321]/50"
                   : ""
               }`}
               rel="noreferrer"
@@ -202,19 +250,15 @@ const MOOCsSection: React.FC<{ moocs: typeof moocsData }> = ({ moocs }) => (
               {item.courses.map((course, courseIndex) => (
                 <div
                   key={courseIndex}
-                  className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white rounded-lg p-4 border border-gray-200"
+                  className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white rounded-lg p-4 border border-[#146321]/20"
                 >
-                  <p className="text-base sm:text-lg font-medium">
+                  <p className="text-base md:text-lg font-medium text-[#146321]">
                     {course.title}
-                  </p>
-                  <p className="text-gray-500 text-sm">
-                    Completed on:{" "}
-                    {new Date(course.completedDate).toLocaleDateString()}
                   </p>
                   <a
                     href={course.certificateLink}
                     target="_blank"
-                    className="text-gray-700 hover:underline mt-2 sm:mt-0"
+                    className="text-[#146321] hover:underline mt-2 md:mt-0"
                     rel="noreferrer"
                   >
                     View Certificate
@@ -225,11 +269,11 @@ const MOOCsSection: React.FC<{ moocs: typeof moocsData }> = ({ moocs }) => (
           )}
         </div>
       ))}
-      <div className="mt-4 text-center">
+      <div className="mt-6 text-center">
         <a
           href={moocs.moreLink}
           target="_blank"
-          className="inline-block text-sm sm:text-base text-gray-600 hover:text-gray-800 underline transition duration-300 font-medium"
+          className="inline-block text-base text-[#146321] hover:text-[#146321] underline font-medium transition duration-300"
           rel="noreferrer"
         >
           View All Courses
@@ -243,20 +287,20 @@ const MOOCsSection: React.FC<{ moocs: typeof moocsData }> = ({ moocs }) => (
 const BlogSection: React.FC<{ blogPosts: typeof blogPostsData }> = ({
   blogPosts,
 }) => (
-  <section id="blog-section" className="mb-10 sm:mb-16">
-    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 sm:mb-6">
+  <section id="blog-section" className="mb-12">
+    <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
       Recent Blog Posts
     </h2>
     <ul className="space-y-4">
       {blogPosts.map((post, index) => (
         <li
           key={index}
-          className="p-4 rounded-lg bg-gray-50 shadow-md hover:shadow-lg transition-shadow duration-300"
+          className="p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
         >
           <a
             href={post.link}
             target="_blank"
-            className="text-lg sm:text-xl text-gray-700 hover:underline"
+            className="text-lg md:text-xl text-[#146321] hover:underline"
             rel="noreferrer"
           >
             {post.title}
@@ -269,8 +313,8 @@ const BlogSection: React.FC<{ blogPosts: typeof blogPostsData }> = ({
 
 // Main App Component
 const App: React.FC = () => (
-  <div className="bg-white text-gray-800 font-sans min-h-screen flex flex-col">
-    <div className="container mx-auto p-4 sm:p-6 max-w-screen-lg flex-grow">
+  <div className="text-[#146321] font-sans min-h-screen flex flex-col">
+    <div className="container mx-auto p-6 max-w-screen-lg flex-grow">
       <ProfileHeader profile={profileData} />
       <EducationSection education={educationData} />
       <SkillsSection skills={skillsData} />
