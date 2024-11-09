@@ -350,7 +350,7 @@ const BlogSection: React.FC<{ blogPosts: BlogPost[] }> = ({ blogPosts }) => (
 
 // Main App Component
 const App: React.FC = () => (
-  <div className="text-[#146321] font-sans min-h-screen flex flex-col">
+  <div className="min-h-screen flex flex-col bg-gray-50 text-[#146321] font-sans">
     <div className="container mx-auto p-6 max-w-screen-lg flex-grow">
       <ProfileHeader profile={profileData} />
       <EducationSection education={educationData} />
