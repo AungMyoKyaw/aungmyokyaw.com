@@ -1,7 +1,52 @@
 import React from "react";
 
+// Type definitions for the data structures
+interface ProfileData {
+  name: string;
+  image: string;
+  title: string;
+  socialLinks: {
+    href: string;
+    iconClass: string;
+  }[];
+}
+
+interface EducationItem {
+  degree: string;
+  university?: string; // Make this optional since 'school' can be used
+  school?: string; // Add 'school' as an optional property
+  status?: string;
+  graduationYear?: string;
+  GPA?: string;
+  distinctions?: string[];
+  finalProject?: string;
+  grade?: string; // Add 'grade' as an optional property
+}
+
+interface MOOCItem {
+  courseTitle: string;
+  type: "Course" | "Bundle";
+  status: "In Progress" | "Completed";
+  certificateLink: string;
+  courses?: {
+    title: string;
+    certificateLink: string;
+  }[];
+}
+
+interface MOOCsData {
+  total: number;
+  items: MOOCItem[];
+  moreLink: string;
+}
+
+interface BlogPost {
+  title: string;
+  link: string;
+}
+
 // Data Definition
-const profileData = {
+const profileData: ProfileData = {
   name: "Aung Myo Kyaw",
   image: "https://avatars.githubusercontent.com/u/9404824?v=4",
   title: "Curious Programmer | Lifelong Learner",
@@ -21,7 +66,7 @@ const profileData = {
   ],
 };
 
-const educationData = [
+const educationData: EducationItem[] = [
   {
     degree: "Master of Science in Information Technology (MSIT)",
     university: "University of the People",
@@ -56,9 +101,9 @@ const educationData = [
   },
 ];
 
-const skillsData = ["I can think", "I can wait", "I can fast"];
+const skillsData: string[] = ["I can think", "I can wait", "I can fast"];
 
-const moocsData = {
+const moocsData: MOOCsData = {
   total: 1000,
   items: [
     {
@@ -93,7 +138,7 @@ const moocsData = {
   moreLink: "https://www.coursera.org/learner/aungmyokyaw",
 };
 
-const blogPostsData = [
+const blogPostsData: BlogPost[] = [
   {
     title: "Building Scalable Web Apps",
     link: "recent-blog-post-link-1",
@@ -105,9 +150,7 @@ const blogPostsData = [
 ];
 
 // ProfileHeader Component
-const ProfileHeader: React.FC<{ profile: typeof profileData }> = ({
-  profile,
-}) => (
+const ProfileHeader: React.FC<{ profile: ProfileData }> = ({ profile }) => (
   <header id="profile-header" className="text-center mb-10 sm:mb-16">
     <img
       src={profile.image}
@@ -137,7 +180,7 @@ const ProfileHeader: React.FC<{ profile: typeof profileData }> = ({
 );
 
 // EducationSection Component
-const EducationSection: React.FC<{ education: typeof educationData }> = ({
+const EducationSection: React.FC<{ education: EducationItem[] }> = ({
   education,
 }) => (
   <section id="education-section" className="mb-12">
@@ -154,9 +197,7 @@ const EducationSection: React.FC<{ education: typeof educationData }> = ({
             <p className="text-2xl font-semibold text-[#146321]">
               {item.degree}
             </p>
-            <p className="text-lg text-[#146321]/80 mb-2">
-              {item.university}
-            </p>
+            <p className="text-lg text-[#146321]/80 mb-2">{item.university}</p>
             {item.status && (
               <p className="italic text-sm text-[#146321]/60">
                 Status: {item.status}
@@ -170,9 +211,7 @@ const EducationSection: React.FC<{ education: typeof educationData }> = ({
           )}
         </div>
         {item.GPA && (
-          <p className="mt-3 text-sm text-[#146321]/90">
-            GPA: {item.GPA}
-          </p>
+          <p className="mt-3 text-sm text-[#146321]/90">GPA: {item.GPA}</p>
         )}
         {item.distinctions && item.distinctions.length > 0 && (
           <div className="mt-4">
@@ -215,7 +254,7 @@ const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
 );
 
 // MOOCsSection Component
-const MOOCsSection: React.FC<{ moocs: typeof moocsData }> = ({ moocs }) => (
+const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
   <section id="moocs-section" className="mb-12">
     <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
       Completed MOOCs
@@ -245,7 +284,7 @@ const MOOCsSection: React.FC<{ moocs: typeof moocsData }> = ({ moocs }) => (
                 : "View Certificate"}
             </a>
           </div>
-          {item.type === "Bundle" && (
+          {item.type === "Bundle" && item.courses && (
             <div className="space-y-4">
               {item.courses.map((course, courseIndex) => (
                 <div
@@ -284,9 +323,7 @@ const MOOCsSection: React.FC<{ moocs: typeof moocsData }> = ({ moocs }) => (
 );
 
 // BlogSection Component
-const BlogSection: React.FC<{ blogPosts: typeof blogPostsData }> = ({
-  blogPosts,
-}) => (
+const BlogSection: React.FC<{ blogPosts: BlogPost[] }> = ({ blogPosts }) => (
   <section id="blog-section" className="mb-12">
     <h2 className="text-3xl md:text-4xl font-bold text-[#146321] border-b-2 border-[#146321]/30 pb-3 mb-6">
       Recent Blog Posts
