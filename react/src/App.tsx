@@ -49,7 +49,7 @@ interface BlogPost {
 const profileData: ProfileData = {
   name: "Aung Myo Kyaw",
   image: "https://avatars.githubusercontent.com/u/9404824?v=4",
-  title: "Curious Programmer | Lifelong Learner",
+  title: "Tech Lead | Curious Programmer | Lifelong Learner",
   socialLinks: [
     {
       href: "https://www.linkedin.com/in/aungmyokyaw/",
