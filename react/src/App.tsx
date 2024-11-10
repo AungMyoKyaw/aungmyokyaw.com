@@ -151,19 +151,19 @@ const blogPostsData: BlogPost[] = [
 
 // ProfileHeader Component
 const ProfileHeader: React.FC<{ profile: ProfileData }> = ({ profile }) => (
-  <header id="profile-header" className="mb-10 text-center sm:mb-16">
+  <header id="profile-header" className="mb-6 text-center sm:mb-10 md:mb-16">
     <img
       src={profile.image}
       alt={profile.name}
-      className="mx-auto mb-6 h-28 w-28 rounded-full border-4 border-[#146321] shadow-lg sm:h-36 sm:w-36 md:h-44 md:w-44"
+      className="mx-auto mb-4 h-20 w-20 rounded-full border-4 border-[#146321] shadow-lg sm:h-28 sm:w-28 md:h-36 md:w-36 lg:h-44 lg:w-44"
     />
-    <h1 className="text-4xl font-semibold text-[#146321] md:text-5xl">
+    <h1 className="text-2xl font-semibold text-[#146321] sm:text-3xl md:text-4xl">
       {profile.name}
     </h1>
-    <p className="mt-3 text-lg font-light text-[#146321] md:text-xl">
+    <p className="mt-2 text-sm font-light text-[#146321] sm:text-base md:text-lg">
       {profile.title}
     </p>
-    <div className="mt-5 flex justify-center space-x-5 sm:space-x-7">
+    <div className="mt-4 flex justify-center space-x-3 sm:space-x-5 md:space-x-7">
       {profile.socialLinks.map((link, index) => (
         <a
           key={index}
@@ -172,7 +172,7 @@ const ProfileHeader: React.FC<{ profile: ProfileData }> = ({ profile }) => (
           className="text-[#146321] transition duration-300 hover:text-[#146321]"
           rel="noreferrer"
         >
-          <i className={`${link.iconClass} fa-2x`}></i>
+          <i className={`${link.iconClass} text-lg sm:text-xl md:text-2xl`}></i>
         </a>
       ))}
     </div>
@@ -183,40 +183,46 @@ const ProfileHeader: React.FC<{ profile: ProfileData }> = ({ profile }) => (
 const EducationSection: React.FC<{ education: EducationItem[] }> = ({
   education
 }) => (
-  <section id="education-section" className="mb-12">
-    <h2 className="mb-6 border-b-2 border-[#146321]/30 pb-3 text-3xl font-bold text-[#146321] md:text-4xl">
+  <section id="education-section" className="mb-10 px-2 sm:px-4 md:px-6">
+    <h2 className="mb-4 border-b-2 border-[#146321]/30 pb-2 text-2xl font-bold text-[#146321] sm:text-3xl md:mb-6 md:pb-3 md:text-4xl">
       Education
     </h2>
     {education.map((item, index) => (
       <div
         key={index}
-        className="mb-6 rounded-lg p-6 shadow-md transition-shadow duration-300 hover:shadow-lg"
+        className="mb-4 rounded-lg p-4 shadow-md transition-shadow duration-300 hover:shadow-lg md:mb-6 md:p-6"
       >
         <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
           <div>
-            <p className="text-2xl font-semibold text-[#146321]">
+            <p className="text-lg font-semibold text-[#146321] sm:text-xl md:text-2xl">
               {item.degree}
             </p>
-            <p className="mb-2 text-lg text-[#146321]/80">{item.university}</p>
+            <p className="mb-1 text-sm text-[#146321]/80 sm:text-base">
+              {item.university || item.school}
+            </p>
             {item.status && (
-              <p className="text-sm italic text-[#146321]/60">
+              <p className="text-xs italic text-[#146321]/60 sm:text-sm">
                 Status: {item.status}
               </p>
             )}
           </div>
           {item.graduationYear && (
-            <p className="text-md mt-2 font-medium text-[#146321] md:mt-0">
+            <p className="mt-2 text-sm font-medium text-[#146321] md:mt-0">
               Class of {item.graduationYear}
             </p>
           )}
         </div>
         {item.GPA && (
-          <p className="mt-3 text-sm text-[#146321]/90">GPA: {item.GPA}</p>
+          <p className="mt-2 text-xs text-[#146321]/90 sm:text-sm">
+            GPA: {item.GPA}
+          </p>
         )}
         {item.distinctions && item.distinctions.length > 0 && (
-          <div className="mt-4">
-            <p className="text-md font-medium text-[#146321]">Distinctions:</p>
-            <ul className="ml-4 list-inside list-disc text-[#146321]/80">
+          <div className="mt-3">
+            <p className="text-sm font-medium text-[#146321] sm:text-base">
+              Distinctions:
+            </p>
+            <ul className="ml-3 list-inside list-disc text-xs text-[#146321]/80 sm:text-sm">
               {item.distinctions.map((distinction, idx) => (
                 <li key={idx}>{distinction}</li>
               ))}
@@ -224,9 +230,13 @@ const EducationSection: React.FC<{ education: EducationItem[] }> = ({
           </div>
         )}
         {item.finalProject && (
-          <div className="mt-4">
-            <p className="text-md font-medium text-[#146321]">Final Project:</p>
-            <p className="text-[#146321]/80">{item.finalProject}</p>
+          <div className="mt-3">
+            <p className="text-sm font-medium text-[#146321] sm:text-base">
+              Final Project:
+            </p>
+            <p className="text-xs text-[#146321]/80 sm:text-sm">
+              {item.finalProject}
+            </p>
           </div>
         )}
       </div>
@@ -236,15 +246,15 @@ const EducationSection: React.FC<{ education: EducationItem[] }> = ({
 
 // SkillsSection Component
 const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
-  <section id="skills-section" className="mb-12">
-    <h2 className="mb-6 border-b-2 border-[#146321]/30 pb-3 text-3xl font-bold text-[#146321] md:text-4xl">
+  <section id="skills-section" className="mb-10 px-2 sm:px-4 md:px-6">
+    <h2 className="mb-4 border-b-2 border-[#146321]/30 pb-2 text-2xl font-bold text-[#146321] sm:text-3xl md:mb-6 md:pb-3 md:text-4xl">
       Skills
     </h2>
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap gap-2 sm:gap-3">
       {skills.map((skill, index) => (
         <span
           key={index}
-          className="rounded-full bg-[#146321]/20 px-4 py-2 text-lg font-medium text-[#146321] shadow-sm transition duration-300 hover:bg-[#146321]/30"
+          className="rounded-full bg-[#146321]/20 px-3 py-1 text-xs font-medium text-[#146321] shadow-sm transition duration-300 hover:bg-[#146321]/30 sm:px-4 sm:py-2 sm:text-sm md:text-lg"
         >
           {skill}
         </span>
@@ -255,24 +265,27 @@ const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
 
 // MOOCsSection Component
 const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
-  <section id="moocs-section" className="mb-12">
-    <h2 className="mb-6 border-b-2 border-[#146321]/30 pb-3 text-3xl font-bold text-[#146321] md:text-4xl">
+  <section id="moocs-section" className="mb-8 px-4 md:mb-12 md:px-8">
+    <h2 className="mb-4 border-b-2 border-[#146321]/30 pb-2 text-2xl font-bold text-[#146321] md:mb-6 md:pb-3 md:text-3xl lg:text-4xl">
       Completed MOOCs
     </h2>
-    <p className="mb-4 text-lg font-light text-[#146321]">
+    <p className="mb-3 text-base font-light text-[#146321] md:mb-4 md:text-lg">
       Total Completed MOOCs: {moocs.total}
     </p>
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {moocs.items.map((item, index) => (
-        <div key={index} className="rounded-lg p-6 shadow-md">
-          <div className="mb-4 flex flex-col items-start justify-between md:flex-row md:items-center">
-            <h3 className="text-xl font-semibold text-[#146321] md:text-2xl">
+        <div
+          key={index}
+          className="rounded-lg p-4 shadow-md transition-shadow duration-300 hover:shadow-lg md:p-6"
+        >
+          <div className="flex flex-col items-start justify-between gap-2 md:flex-row md:items-center">
+            <h3 className="text-lg font-semibold text-[#146321] md:text-xl lg:text-2xl">
               {item.courseTitle}
             </h3>
             <a
               href={item.certificateLink}
               target="_blank"
-              className={`mt-2 text-[#146321] hover:underline md:mt-0 ${
+              className={`mt-1 text-[#146321] hover:underline md:mt-0 ${
                 item.status === "In Progress"
                   ? "pointer-events-none text-[#146321]/50"
                   : ""
@@ -285,34 +298,36 @@ const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
             </a>
           </div>
           {item.type === "Bundle" && item.courses && (
-            <div className="space-y-4">
+            <div className="mt-3 space-y-2 md:mt-4">
               {item.courses.map((course, courseIndex) => (
-                <div
+                <blockquote
                   key={courseIndex}
-                  className="flex flex-col items-start justify-between rounded-lg border border-[#146321]/20 bg-white p-4 md:flex-row md:items-center"
+                  className="border-l-4 border-[#146321] bg-[#f8f8f8] p-3 text-[#146321]/80 md:p-4"
                 >
-                  <p className="text-base font-medium text-[#146321] md:text-lg">
-                    {course.title}
-                  </p>
-                  <a
-                    href={course.certificateLink}
-                    target="_blank"
-                    className="mt-2 text-[#146321] hover:underline md:mt-0"
-                    rel="noreferrer"
-                  >
-                    View Certificate
-                  </a>
-                </div>
+                  <div className="flex flex-col items-start justify-between gap-1 sm:flex-row sm:items-center">
+                    <p className="text-sm font-medium md:text-base">
+                      {course.title}
+                    </p>
+                    <a
+                      href={course.certificateLink}
+                      target="_blank"
+                      className="text-xs text-[#146321] hover:underline md:text-sm"
+                      rel="noreferrer"
+                    >
+                      View Certificate
+                    </a>
+                  </div>
+                </blockquote>
               ))}
             </div>
           )}
         </div>
       ))}
-      <div className="mt-6 text-center">
+      <div className="mt-5 text-center md:mt-6">
         <a
           href={moocs.moreLink}
           target="_blank"
-          className="inline-block text-base font-medium text-[#146321] underline transition duration-300 hover:text-[#146321]"
+          className="inline-block text-sm font-medium text-[#146321] underline transition duration-300 hover:text-[#146321] md:text-base"
           rel="noreferrer"
         >
           View All Courses
@@ -324,20 +339,20 @@ const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
 
 // BlogSection Component
 const BlogSection: React.FC<{ blogPosts: BlogPost[] }> = ({ blogPosts }) => (
-  <section id="blog-section" className="mb-12">
-    <h2 className="mb-6 border-b-2 border-[#146321]/30 pb-3 text-3xl font-bold text-[#146321] md:text-4xl">
+  <section id="blog-section" className="mb-10 px-2 sm:px-4 md:px-6">
+    <h2 className="mb-4 border-b-2 border-[#146321]/30 pb-2 text-2xl font-bold text-[#146321] sm:text-3xl md:mb-6 md:pb-3 md:text-4xl">
       Recent Blog Posts
     </h2>
-    <ul className="space-y-4">
+    <ul className="space-y-3 sm:space-y-4 md:space-y-6">
       {blogPosts.map((post, index) => (
         <li
           key={index}
-          className="rounded-lg p-5 shadow-md transition-shadow duration-300 hover:shadow-lg"
+          className="rounded-lg p-4 shadow-md transition-shadow duration-300 hover:shadow-lg sm:p-5 md:p-6"
         >
           <a
             href={post.link}
             target="_blank"
-            className="text-lg text-[#146321] hover:underline md:text-xl"
+            className="block text-sm font-medium text-[#146321] hover:underline sm:text-base md:text-lg"
             rel="noreferrer"
           >
             {post.title}
@@ -362,3 +377,7 @@ const App: React.FC = () => (
 );
 
 export default App;
+
+// ----
+// adjust the layout of the components for mobile responsiveness
+// we are now start supporting from iphone se 1st gen
