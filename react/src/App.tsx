@@ -265,7 +265,7 @@ const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
 
 // MOOCsSection Component
 const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
-  <section id="moocs-section" className="mb-8 px-4 md:mb-12 md:px-8">
+  <section id="moocs-section" className="mb-10 px-2 sm:px-4 md:px-6">
     <h2 className="mb-4 border-b-2 border-[#146321]/30 pb-2 text-2xl font-bold text-[#146321] md:mb-6 md:pb-3 md:text-3xl lg:text-4xl">
       Completed MOOCs
     </h2>
