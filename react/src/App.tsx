@@ -116,15 +116,15 @@ const moocsData: MOOCsData = {
       courseTitle: "Lorem Ipsum Specialization",
       type: "Bundle",
       status: "Completed",
-      certificateLink: "specialization-certificate-link",
+      certificateLink: "https://www.coursera.org/account/accomplishments/specialization/certificate/IIVT58YEY97P",
       courses: [
         {
           title: "Lorem Ipsum Course",
-          certificateLink: "certificate-link-1"
+          certificateLink: "https://www.coursera.org/account/accomplishments/specialization/certificate/IIVT58YEY97P"
         },
         {
           title: "Lorem Ipsum Course",
-          certificateLink: "certificate-link-2"
+          certificateLink: "https://www.coursera.org/account/accomplishments/specialization/certificate/IIVT58YEY97P"
         }
       ]
     },
@@ -132,7 +132,7 @@ const moocsData: MOOCsData = {
       courseTitle: "Lorem Ipsum",
       type: "Course",
       status: "Completed",
-      certificateLink: "certificate-link-3"
+      certificateLink: "https://www.coursera.org/account/accomplishments/specialization/certificate/IIVT58YEY97P"
     }
   ],
   moreLink: "https://www.coursera.org/learner/aungmyokyaw"
@@ -140,11 +140,11 @@ const moocsData: MOOCsData = {
 
 const blogPostsData: BlogPost[] = [
   {
-    title: "Building Scalable Web Apps",
+    title: "Lorem Ipsum",
     link: "recent-blog-post-link-1"
   },
   {
-    title: "Intro to Machine Learning",
+    title: "Lorem Ipsum",
     link: "recent-blog-post-link-2"
   }
 ];
