@@ -317,9 +317,9 @@ const App: React.FC = () => (
   <div className="flex min-h-screen flex-col bg-secondary font-sans text-primary">
     <div className="container mx-auto max-w-screen-lg flex-grow p-6">
       <ProfileHeader profile={profileData} />
-      <EducationSection education={educationData} />
       <SkillsSection skills={skillsData} />
       <MOOCsSection moocs={moocsData} />
+      <EducationSection education={educationData} />
       <BlogSection blogPosts={blogPostsData} />
     </div>
   </div>
