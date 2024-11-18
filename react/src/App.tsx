@@ -1,4 +1,5 @@
 import React from "react";
+import moocsDataRaw from "./data/moocsData.json";
 
 // Type definitions for the data structures
 interface ProfileData {
@@ -97,40 +98,7 @@ const educationData: EducationItem[] = [
 
 const skillsData: string[] = ["I can think", "I can wait", "I can fast"];
 
-const moocsData: MOOCsData = {
-  total: 1000,
-  items: [
-    {
-      courseTitle: "Lorem Ipsum",
-      type: "Course",
-      status: "In Progress",
-      certificateLink: "#"
-    },
-    {
-      courseTitle: "Lorem Ipsum Specialization",
-      type: "Bundle",
-      status: "Completed",
-      certificateLink: "https://www.coursera.org/account/accomplishments/specialization/certificate/IIVT58YEY97P",
-      courses: [
-        {
-          title: "Lorem Ipsum Course",
-          certificateLink: "https://www.coursera.org/account/accomplishments/specialization/certificate/IIVT58YEY97P"
-        },
-        {
-          title: "Lorem Ipsum Course",
-          certificateLink: "https://www.coursera.org/account/accomplishments/specialization/certificate/IIVT58YEY97P"
-        }
-      ]
-    },
-    {
-      courseTitle: "Lorem Ipsum",
-      type: "Course",
-      status: "Completed",
-      certificateLink: "https://www.coursera.org/account/accomplishments/specialization/certificate/IIVT58YEY97P"
-    }
-  ],
-  moreLink: "https://www.coursera.org/learner/aungmyokyaw"
-};
+const moocsData: MOOCsData = moocsDataRaw;
 
 const blogPostsData: BlogPost[] = [
   {
@@ -263,9 +231,6 @@ const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
     <h2 className="mb-4 border-b-2 border-primary/30 pb-2 text-2xl font-bold text-primary md:mb-6 md:pb-3 md:text-3xl lg:text-4xl">
       Completed MOOCs
     </h2>
-    <p className="mb-3 text-base font-light text-primary md:mb-4 md:text-lg">
-      Total Completed MOOCs: {moocs.total}
-    </p>
     <div className="space-y-4 md:space-y-6">
       {moocs.items.map((item, index) => (
         <div
@@ -317,16 +282,6 @@ const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
           )}
         </div>
       ))}
-      <div className="mt-5 text-center md:mt-6">
-        <a
-          href={moocs.moreLink}
-          target="_blank"
-          className="inline-block text-sm font-medium text-primary underline transition duration-300 hover:text-primary md:text-base"
-          rel="noreferrer"
-        >
-          View All Courses
-        </a>
-      </div>
     </div>
   </section>
 );
