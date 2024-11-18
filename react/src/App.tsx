@@ -68,12 +68,6 @@ const profileData: ProfileData = {
 
 const educationData: EducationItem[] = [
   {
-    degree: "Master of Science in Information Technology (MSIT)",
-    university: "University of the People",
-    status: "In Progress",
-    graduationYear: ""
-  },
-  {
     degree: "Applied Data Science Lab",
     university: "WorldQuant University",
     graduationYear: "2023"
