@@ -98,7 +98,7 @@ const educationData: EducationItem[] = [
 
 const skillsData: string[] = ["I can think", "I can wait", "I can fast"];
 
-const moocsData: MOOCsData = moocsDataRaw;
+const moocsData: MOOCsData = moocsDataRaw as MOOCsData;
 
 const blogPostsData: BlogPost[] = [
   {
