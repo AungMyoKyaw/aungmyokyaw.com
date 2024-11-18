@@ -244,7 +244,7 @@ const MOOCsSection: React.FC<{ moocs: MOOCsData }> = ({ moocs }) => (
             <a
               href={item.certificateLink}
               target="_blank"
-              className={`mt-1 text-primary hover:underline md:mt-0 ${
+              className={`mt-1 whitespace-nowrap text-primary hover:underline md:mt-0 ${
                 item.status === "In Progress"
                   ? "pointer-events-none text-primary/50"
                   : ""
