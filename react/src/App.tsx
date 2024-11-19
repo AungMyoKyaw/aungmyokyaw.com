@@ -1,5 +1,5 @@
-import React from "react";
-import moocsDataRaw from "./data/moocsData.json";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 // Type definitions for the data structures
 interface ProfileData {
@@ -97,8 +97,6 @@ const educationData: EducationItem[] = [
 ];
 
 const skillsData: string[] = ["I can think", "I can wait", "I can fast"];
-
-const moocsData: MOOCsData = moocsDataRaw as MOOCsData;
 
 const blogPostsData: BlogPost[] = [
   {
@@ -313,16 +311,35 @@ const BlogSection: React.FC<{ blogPosts: BlogPost[] }> = ({ blogPosts }) => (
 );
 
 // Main App Component
-const App: React.FC = () => (
-  <div className="flex min-h-screen flex-col bg-secondary font-sans text-primary">
-    <div className="container mx-auto max-w-screen-lg flex-grow p-6">
-      <ProfileHeader profile={profileData} />
-      <SkillsSection skills={skillsData} />
-      <MOOCsSection moocs={moocsData} />
-      <EducationSection education={educationData} />
-      <BlogSection blogPosts={blogPostsData} />
+const App: React.FC = () => {
+  const [moocsData, setMoocsData] = useState<MOOCsData | null>(null);
+
+  useEffect(() => {
+    const fetchMoocsData = async () => {
+      try {
+        const { data } = await axios.get<MOOCsData>(
+          "https://moocs.aungmyokyaw.com/moocsData.json"
+        );
+        setMoocsData(data);
+      } catch (error) {
+        console.error("Error fetching MOOCs data:", error);
+      }
+    };
+
+    fetchMoocsData();
+  }, []);
+
+  return (
+    <div className="flex min-h-screen flex-col bg-secondary font-sans text-primary">
+      <div className="container mx-auto max-w-screen-lg flex-grow p-6">
+        <ProfileHeader profile={profileData} />
+        <SkillsSection skills={skillsData} />
+        {moocsData && <MOOCsSection moocs={moocsData} />}
+        <EducationSection education={educationData} />
+        <BlogSection blogPosts={blogPostsData} />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default App;
