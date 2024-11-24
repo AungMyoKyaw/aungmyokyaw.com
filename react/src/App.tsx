@@ -265,7 +265,11 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="bg-primary py-6 text-center text-white">
-        <p>© 2024 Aung Myo Kyaw. All rights reserved.</p>
+        <div className="container mx-auto px-4 sm:flex sm:items-center sm:justify-center">
+          <p className="text-sm sm:text-base">
+            © 2024 Aung Myo Kyaw. All rights reserved.
+          </p>
+        </div>
       </footer>
     </div>
   );
