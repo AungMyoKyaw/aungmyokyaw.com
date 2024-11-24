@@ -96,7 +96,15 @@ const educationData: EducationItem[] = [
   }
 ];
 
-const skillsData: string[] = ["I can think", "I can wait", "I can fast"];
+const skillsData: string[] = [
+  "I can think",
+  "I can wait",
+  "I can fast",
+  "I can learn",
+  "I can program",
+  "I can solve",
+  "I can lead"
+];
 
 const blogPostsData: BlogPost[] = [
   {
@@ -336,7 +344,7 @@ const App: React.FC = () => {
         <SkillsSection skills={skillsData} />
         {moocsData && <MOOCsSection moocs={moocsData} />}
         <EducationSection education={educationData} />
-        <BlogSection blogPosts={blogPostsData} />
+        {false && <BlogSection blogPosts={blogPostsData} />}
       </div>
     </div>
   );
