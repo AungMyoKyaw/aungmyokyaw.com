@@ -60,33 +60,7 @@ const profileData: ProfileData = {
   ]
 };
 
-const educationData: EducationItem[] = [
-  {
-    degree: "Applied Data Science Lab",
-    university: "WorldQuant University",
-    graduationYear: "2023"
-  },
-  {
-    degree: "Full Stack Web Development Certification",
-    university: "freeCodeCamp",
-    graduationYear: "2017"
-  },
-  {
-    degree:
-      "Bachelor of Engineering (Aerospace - Propulsion and Flight Vehicles)",
-    university: "Myanmar Aerospace Engineering University",
-    graduationYear: "2016",
-    GPA: "4.34 out of 5",
-    distinctions: ["Aerospace Propulsion", "Design Project"],
-    finalProject: "Design and Construction of Tricopter"
-  },
-  {
-    degree: "High School Diploma",
-    school: "No.3, Basic Education High School, Satthwa",
-    graduationYear: "2010",
-    distinctions: ["Mathematics", "Chemistry", "Biology"]
-  }
-];
+const educationData: EducationItem[] = [];
 
 const skillsData: string[] = [
   "Programming",
@@ -97,6 +71,10 @@ const skillsData: string[] = [
 
 const App: React.FC = () => {
   const [moocsData, setMoocsData] = useState<MOOCsData | null>(null);
+
+  const [currentYear, setCurrentYear] = useState<number>(
+    new Date().getFullYear()
+  );
 
   useEffect(() => {
     const fetchMoocsData = async () => {
@@ -111,6 +89,10 @@ const App: React.FC = () => {
     };
 
     fetchMoocsData();
+
+    // Optionally, update the year in case you need it to refresh or if you add more dynamic logic later
+    const year = new Date().getFullYear();
+    setCurrentYear(year);
   }, []);
 
   return (
@@ -233,41 +215,44 @@ const App: React.FC = () => {
         )}
 
         {/* Education Section */}
-        <section className="mb-12">
-          <h2 className="mb-4 border-b-2 border-accent text-lg font-bold sm:text-2xl">
-            Education
-          </h2>
-          {educationData.map((item, index) => (
-            <div
-              key={index}
-              className="mb-6 rounded-lg bg-white p-3 shadow-md sm:p-4"
-            >
-              <h3 className="text-base font-semibold sm:text-xl">
-                {item.degree}
-              </h3>
-              <p className="text-xs text-muted sm:text-sm">
-                {item.university || item.school}, Class of {item.graduationYear}
-              </p>
-              {item.GPA && (
-                <p className="text-xs sm:text-sm">GPA: {item.GPA}</p>
-              )}
-              {item.distinctions && (
-                <ul className="list-disc pl-4 text-xs sm:text-sm">
-                  {item.distinctions.map((distinction, idx) => (
-                    <li key={idx}>{distinction}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
-        </section>
+        {educationData.length > 0 && (
+          <section className="mb-12">
+            <h2 className="mb-4 border-b-2 border-accent text-lg font-bold sm:text-2xl">
+              Education
+            </h2>
+            {educationData.map((item, index) => (
+              <div
+                key={index}
+                className="mb-6 rounded-lg bg-white p-3 shadow-md sm:p-4"
+              >
+                <h3 className="text-base font-semibold sm:text-xl">
+                  {item.degree}
+                </h3>
+                <p className="text-xs text-muted sm:text-sm">
+                  {item.university || item.school}, Class of{" "}
+                  {item.graduationYear}
+                </p>
+                {item.GPA && (
+                  <p className="text-xs sm:text-sm">GPA: {item.GPA}</p>
+                )}
+                {item.distinctions && (
+                  <ul className="list-disc pl-4 text-xs sm:text-sm">
+                    {item.distinctions.map((distinction, idx) => (
+                      <li key={idx}>{distinction}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </section>
+        )}
       </main>
 
       {/* Footer */}
       <footer className="bg-primary py-6 text-center text-white">
         <div className="container mx-auto px-4 sm:flex sm:items-center sm:justify-center">
           <p className="text-sm sm:text-base">
-            © 2024 Aung Myo Kyaw. All rights reserved.
+            © {currentYear} Aung Myo Kyaw. All rights reserved.
           </p>
         </div>
       </footer>
