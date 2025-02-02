@@ -71,7 +71,6 @@ const skillsData: string[] = [
 
 const App: React.FC = () => {
   const [moocsData, setMoocsData] = useState<MOOCsData | null>(null);
-
   const [currentYear, setCurrentYear] = useState<number>(
     new Date().getFullYear()
   );
@@ -89,38 +88,35 @@ const App: React.FC = () => {
     };
 
     fetchMoocsData();
-
-    // Optionally, update the year in case you need it to refresh or if you add more dynamic logic later
-    const year = new Date().getFullYear();
-    setCurrentYear(year);
+    setCurrentYear(new Date().getFullYear());
   }, []);
 
   return (
-    <div className="min-h-screen bg-secondary font-sans text-primary">
+    <div className="min-h-screen bg-gray-950 font-sans text-gray-100">
       {/* Header */}
-      <header className="bg-primary p-4 text-center text-white shadow-lg sm:p-6">
-        <div className="mx-auto h-20 w-20 overflow-hidden rounded-full border-4 border-accent sm:h-24 sm:w-24">
+      <header className="border-b border-blue-700 bg-gradient-to-r from-blue-950 to-blue-800 p-6 text-center shadow-2xl sm:p-8">
+        <div className="mx-auto h-20 w-20 overflow-hidden rounded-full border-4 border-gray-100 shadow-md sm:h-28 sm:w-28">
           <img
             src={profileData.image}
             alt={profileData.name}
             className="h-full w-full object-cover"
           />
         </div>
-        <h1 className="mt-4 text-xl font-bold sm:text-2xl lg:text-4xl">
+        <h1 className="mt-4 text-2xl font-bold tracking-wide text-white sm:text-4xl">
           {profileData.name}
         </h1>
-        <p className="mt-2 text-sm sm:text-base lg:text-lg">
+        <p className="mt-1 text-base text-blue-200 sm:text-xl">
           {profileData.title}
         </p>
-        <div className="mt-4 flex justify-center space-x-2 sm:space-x-4">
+        <div className="mt-4 flex justify-center space-x-4 sm:space-x-6">
           {profileData.socialLinks.map((link, index) => (
             <a
               key={index}
               href={link.href}
               target="_blank"
-              className="text-base transition duration-300 hover:text-accent sm:text-xl"
               rel="noreferrer"
               aria-label={link.label}
+              className="text-xl text-white transition duration-300 hover:text-blue-300 sm:text-3xl"
             >
               <i className={`${link.iconClass}`}></i>
             </a>
@@ -129,17 +125,17 @@ const App: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto max-w-screen-lg px-4 py-8">
+      <main className="container mx-auto max-w-5xl px-4 py-8 sm:px-8 sm:py-12">
         {/* Skills Section */}
-        <section className="mb-12">
-          <h2 className="mb-4 border-b-2 border-accent text-lg font-bold sm:text-2xl">
+        <section className="mb-8 sm:mb-12">
+          <h2 className="mb-4 border-b-2 border-blue-800 text-2xl font-semibold tracking-wide sm:mb-6 sm:text-3xl">
             Skills
           </h2>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 sm:gap-4">
             {skillsData.map((skill, index) => (
               <span
                 key={index}
-                className="rounded-full bg-accent/10 px-3 py-1 text-xs text-primary shadow-sm transition hover:bg-accent/20 sm:px-4 sm:py-2 sm:text-sm"
+                className="rounded-full bg-blue-800 px-3 py-1 text-sm font-medium text-blue-200 shadow-md transition hover:bg-blue-700 sm:px-5 sm:py-2 sm:text-lg"
               >
                 {skill}
               </span>
@@ -149,23 +145,22 @@ const App: React.FC = () => {
 
         {/* MOOCs Section */}
         {moocsData && (
-          <section id="moocs-section" className="mb-12">
-            <h2 className="mb-4 border-b-2 border-accent text-lg font-bold sm:text-2xl">
+          <section id="moocs-section" className="mb-8 sm:mb-12">
+            <h2 className="mb-4 border-b-2 border-blue-800 text-2xl font-semibold tracking-wide sm:mb-6 sm:text-3xl">
               MOOCs
             </h2>
-            <div className="space-y-4 sm:space-y-6">
+            <div className="space-y-4 sm:space-y-8">
               {moocsData.items.map((item, index) => (
                 <div
                   key={index}
-                  className="rounded-lg bg-white p-3 shadow-md sm:p-4"
+                  className="rounded-lg border border-gray-800 bg-gray-900 p-4 shadow-md transition hover:shadow-xl sm:p-8"
                 >
-                  {/* Main Course Info */}
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                     <a
                       href={item.certificateLink}
                       target="_blank"
                       rel="noreferrer"
-                      className="cursor-pointer text-sm font-semibold text-primary hover:text-accent sm:text-lg"
+                      className="text-xl font-semibold text-gray-100 transition hover:text-blue-400 sm:text-2xl"
                     >
                       {item.courseTitle}
                     </a>
@@ -173,11 +168,11 @@ const App: React.FC = () => {
                       href={item.certificateLink}
                       target="_blank"
                       rel="noreferrer"
-                      className={`text-xs font-medium ${
+                      className={`mt-2 whitespace-nowrap text-base font-medium sm:mt-0 sm:text-lg ${
                         item.status === "In Progress"
-                          ? "pointer-events-none text-muted"
-                          : "text-accent"
-                      } hover:underline sm:text-sm`}
+                          ? "text-gray-500"
+                          : "text-blue-400 hover:underline"
+                      }`}
                     >
                       {item.status === "Completed"
                         ? "View Certificate"
@@ -185,27 +180,29 @@ const App: React.FC = () => {
                     </a>
                   </div>
 
-                  {/* Sub-Courses if Bundle */}
                   {item.type === "Bundle" && item.courses && (
-                    <div className="mt-4 space-y-2">
-                      <h3 className="text-sm font-semibold sm:text-base">
+                    <div className="mt-4">
+                      <h3 className="mb-2 text-lg font-semibold text-gray-100 sm:text-xl">
                         Included Courses:
                       </h3>
-                      {item.courses.map((subCourse, subIndex) => (
-                        <blockquote
-                          key={subIndex}
-                          className="flex justify-between border-l-4 border-accent pl-3 text-xs italic text-primary/80 sm:text-sm"
-                        >
-                          <a
-                            href={subCourse.certificateLink}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="font-medium text-primary hover:text-accent"
+                      <ul className="space-y-1 sm:space-y-2">
+                        {item.courses.map((subCourse, subIndex) => (
+                          <li
+                            key={subIndex}
+                            className="flex items-center space-x-2 sm:space-x-3"
                           >
-                            {subCourse.title}
-                          </a>
-                        </blockquote>
-                      ))}
+                            <i className="fas fa-check-circle text-blue-400"></i>
+                            <a
+                              href={subCourse.certificateLink}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-base font-medium text-gray-300 transition hover:text-blue-400 sm:text-lg"
+                            >
+                              {subCourse.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
                 </div>
@@ -216,27 +213,29 @@ const App: React.FC = () => {
 
         {/* Education Section */}
         {educationData.length > 0 && (
-          <section className="mb-12">
-            <h2 className="mb-4 border-b-2 border-accent text-lg font-bold sm:text-2xl">
+          <section className="mb-8 sm:mb-12">
+            <h2 className="mb-4 border-b-2 border-blue-800 text-2xl font-semibold tracking-wide sm:mb-6 sm:text-3xl">
               Education
             </h2>
             {educationData.map((item, index) => (
               <div
                 key={index}
-                className="mb-6 rounded-lg bg-white p-3 shadow-md sm:p-4"
+                className="mb-4 rounded-lg border border-gray-800 bg-gray-900 p-4 shadow-md transition hover:shadow-xl sm:mb-8 sm:p-8"
               >
-                <h3 className="text-base font-semibold sm:text-xl">
+                <h3 className="text-xl font-semibold text-gray-100 sm:text-2xl">
                   {item.degree}
                 </h3>
-                <p className="text-xs text-muted sm:text-sm">
+                <p className="mt-1 text-base text-gray-400 sm:text-lg">
                   {item.university || item.school}, Class of{" "}
                   {item.graduationYear}
                 </p>
                 {item.GPA && (
-                  <p className="text-xs sm:text-sm">GPA: {item.GPA}</p>
+                  <p className="mt-1 text-base text-gray-400 sm:text-lg">
+                    GPA: {item.GPA}
+                  </p>
                 )}
                 {item.distinctions && (
-                  <ul className="list-disc pl-4 text-xs sm:text-sm">
+                  <ul className="mt-2 list-disc pl-4 text-sm text-gray-400 sm:pl-6 sm:text-base">
                     {item.distinctions.map((distinction, idx) => (
                       <li key={idx}>{distinction}</li>
                     ))}
@@ -249,9 +248,9 @@ const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-primary py-6 text-center text-white">
-        <div className="container mx-auto px-4 sm:flex sm:items-center sm:justify-center">
-          <p className="text-sm sm:text-base">
+      <footer className="border-t border-blue-800 bg-blue-900 py-4 sm:py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm text-blue-200 sm:text-lg">
             © {currentYear} Aung Myo Kyaw. All rights reserved.
           </p>
         </div>
