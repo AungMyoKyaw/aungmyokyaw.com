@@ -123,53 +123,69 @@ const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
 
 const MoocsSection: React.FC<{ moocsData: MOOCsData | null }> = ({
   moocsData
-}) =>
-  moocsData ? (
+}) => {
+  const isLoading = moocsData === null;
+
+  return (
     <section className="mb-8 sm:mb-12">
       <h2 className="mb-4 border-b-2 border-blue-800 text-2xl font-semibold tracking-wide sm:mb-6 sm:text-3xl">
         MOOCs
       </h2>
       <div className="space-y-4 sm:space-y-8">
-        {moocsData.items.map((item, index) => (
-          <div
-            key={index}
-            className="rounded-lg border border-gray-800 bg-gray-900 p-4 shadow-md transition hover:shadow-xl sm:p-8"
-          >
-            <a
-              href={item.certificateLink}
-              target="_blank"
-              rel="noreferrer"
-              className="text-xl font-semibold text-gray-100 transition hover:text-blue-400 sm:text-2xl"
-            >
-              {item.courseTitle}
-            </a>
-            {item.type === "Bundle" && item.courses && (
-              <div className="mt-4">
-                <ul className="space-y-1 sm:space-y-2">
-                  {item.courses.map((subCourse, subIndex) => (
-                    <li
-                      key={subIndex}
-                      className="flex items-center space-x-2 sm:space-x-3"
-                    >
-                      <i className="fas fa-check-circle text-blue-400"></i>
-                      <a
-                        href={subCourse.certificateLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-base font-medium text-gray-300 transition hover:text-blue-400 sm:text-lg"
-                      >
-                        {subCourse.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+        {isLoading
+          ? // Show loading skeletons while fetching
+            [...Array(3)].map((_, index) => (
+              <div
+                key={index}
+                className="animate-pulse rounded-lg border border-gray-800 bg-gray-900 p-4 shadow-md sm:p-8"
+              >
+                <div className="h-6 w-3/4 rounded bg-gray-700 sm:h-8"></div>
+                <div className="mt-3 h-4 w-1/2 rounded bg-gray-800 sm:h-5"></div>
+                <div className="mt-2 h-4 w-1/3 rounded bg-gray-800 sm:h-5"></div>
               </div>
-            )}
-          </div>
-        ))}
+            ))
+          : // Show actual data once loaded
+            moocsData.items.map((item, index) => (
+              <div
+                key={index}
+                className="rounded-lg border border-gray-800 bg-gray-900 p-4 shadow-md transition hover:shadow-xl sm:p-8"
+              >
+                <a
+                  href={item.certificateLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xl font-semibold text-gray-100 transition hover:text-blue-400 sm:text-2xl"
+                >
+                  {item.courseTitle}
+                </a>
+                {item.type === "Bundle" && item.courses && (
+                  <div className="mt-4">
+                    <ul className="space-y-1 sm:space-y-2">
+                      {item.courses.map((subCourse, subIndex) => (
+                        <li
+                          key={subIndex}
+                          className="flex items-center space-x-2 sm:space-x-3"
+                        >
+                          <i className="fas fa-check-circle text-blue-400"></i>
+                          <a
+                            href={subCourse.certificateLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-base font-medium text-gray-300 transition hover:text-blue-400 sm:text-lg"
+                          >
+                            {subCourse.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
       </div>
     </section>
-  ) : null;
+  );
+};
 
 const Footer: React.FC = () => (
   <footer className="border-t border-blue-800 bg-blue-900 py-4 sm:py-8">
