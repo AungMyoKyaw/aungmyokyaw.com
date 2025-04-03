@@ -26,9 +26,9 @@ interface MOOCItem {
 interface MOOCsData {
   total: number;
   items: MOOCItem[];
+  moreLink?: string;
 }
 
-// Data
 const profileData: ProfileData = {
   name: "Aung Myo Kyaw",
   image: "https://avatars.githubusercontent.com/u/9404824?v=4",
@@ -52,14 +52,6 @@ const profileData: ProfileData = {
   ]
 };
 
-const skillsData: string[] = [
-  "Programming",
-  "Leadership",
-  "Problem Solving",
-  "Learning"
-];
-
-// Data Fetching Service
 const fetchMoocsData = async (): Promise<MOOCsData | null> => {
   try {
     const { data } = await axios.get<MOOCsData>(
@@ -72,129 +64,40 @@ const fetchMoocsData = async (): Promise<MOOCsData | null> => {
   }
 };
 
-// Components
+const GlowingCard: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div className="rounded-xl border border-blue-800 bg-gradient-to-br from-gray-900 to-gray-950 p-6 shadow-[0_0_30px_5px_rgba(0,120,255,0.3)] transition hover:shadow-[0_0_40px_10px_rgba(0,180,255,0.4)]">
+    {children}
+  </div>
+);
+
 const ProfileHeader: React.FC<{ profile: ProfileData }> = ({ profile }) => (
-  <header className="border-b border-blue-700 bg-gradient-to-r from-blue-950 to-blue-800 p-6 text-center shadow-2xl sm:p-8">
-    <div className="mx-auto h-20 w-20 overflow-hidden rounded-full border-4 border-gray-100 shadow-md sm:h-28 sm:w-28">
+  <header className="animate-fade-in border-b border-cyan-500 bg-black/80 p-6 text-center backdrop-blur sm:p-8">
+    <div className="mx-auto h-24 w-24 overflow-hidden rounded-full border-4 border-cyan-400 shadow-md sm:h-32 sm:w-32">
       <img
         src={profile.image}
         alt={profile.name}
         className="h-full w-full object-cover"
       />
     </div>
-    <h1 className="mt-4 text-2xl font-bold tracking-wide text-white sm:text-4xl">
+    <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-cyan-300 sm:text-5xl">
       {profile.name}
     </h1>
-    <p className="mt-1 text-base text-blue-200 sm:text-xl">{profile.title}</p>
-    <div className="mt-4 flex justify-center space-x-4 sm:space-x-6">
-      {profile.socialLinks.map((link, index) => (
+    <p className="mt-2 text-base text-cyan-200 sm:text-xl">{profile.title}</p>
+    <div className="mt-4 flex justify-center space-x-4">
+      {profile.socialLinks.map((link, i) => (
         <a
-          key={index}
+          key={i}
           href={link.href}
           target="_blank"
           rel="noreferrer"
           aria-label={link.label}
-          className="text-xl text-white transition duration-300 hover:text-blue-300 sm:text-3xl"
+          className="text-2xl text-cyan-300 transition hover:text-white"
         >
           <i className={link.iconClass}></i>
         </a>
       ))}
     </div>
   </header>
-);
-
-const SkillsSection: React.FC<{ skills: string[] }> = ({ skills }) => (
-  <section className="mb-8 sm:mb-12">
-    <h2 className="mb-4 border-b-2 border-blue-800 text-2xl font-semibold tracking-wide sm:mb-6 sm:text-3xl">
-      Skills
-    </h2>
-    <div className="flex flex-wrap gap-2 sm:gap-4">
-      {skills.map((skill, index) => (
-        <span
-          key={index}
-          className="rounded-full bg-blue-800 px-3 py-1 text-sm font-medium text-blue-200 shadow-md transition hover:bg-blue-700 sm:px-5 sm:py-2 sm:text-lg"
-        >
-          {skill}
-        </span>
-      ))}
-    </div>
-  </section>
-);
-
-const MoocsSection: React.FC<{ moocsData: MOOCsData | null }> = ({
-  moocsData
-}) => {
-  const isLoading = moocsData === null;
-
-  return (
-    <section className="mb-8 sm:mb-12">
-      <h2 className="mb-4 border-b-2 border-blue-800 text-2xl font-semibold tracking-wide sm:mb-6 sm:text-3xl">
-        MOOCs
-      </h2>
-      <div className="space-y-4 sm:space-y-8">
-        {isLoading
-          ? // Show loading skeletons while fetching
-            [...Array(3)].map((_, index) => (
-              <div
-                key={index}
-                className="animate-pulse rounded-lg border border-gray-800 bg-gray-900 p-4 shadow-md sm:p-8"
-              >
-                <div className="h-6 w-3/4 rounded bg-gray-700 sm:h-8"></div>
-                <div className="mt-3 h-4 w-1/2 rounded bg-gray-800 sm:h-5"></div>
-                <div className="mt-2 h-4 w-1/3 rounded bg-gray-800 sm:h-5"></div>
-              </div>
-            ))
-          : // Show actual data once loaded
-            moocsData.items.map((item, index) => (
-              <div
-                key={index}
-                className="rounded-lg border border-gray-800 bg-gray-900 p-4 shadow-md transition hover:shadow-xl sm:p-8"
-              >
-                <a
-                  href={item.certificateLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xl font-semibold text-gray-100 transition hover:text-blue-400 sm:text-2xl"
-                >
-                  {item.courseTitle}
-                </a>
-                {item.type === "Bundle" && item.courses && (
-                  <div className="mt-4">
-                    <ul className="space-y-1 sm:space-y-2">
-                      {item.courses.map((subCourse, subIndex) => (
-                        <li
-                          key={subIndex}
-                          className="flex items-center space-x-2 sm:space-x-3"
-                        >
-                          <i className="fas fa-check-circle text-blue-400"></i>
-                          <a
-                            href={subCourse.certificateLink}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-base font-medium text-gray-300 transition hover:text-blue-400 sm:text-lg"
-                          >
-                            {subCourse.title}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
-      </div>
-    </section>
-  );
-};
-
-const Footer: React.FC = () => (
-  <footer className="border-t border-blue-800 bg-blue-900 py-4 sm:py-8">
-    <div className="container mx-auto px-4 text-center">
-      <p className="text-sm text-blue-200 sm:text-lg">
-        &copy; {new Date().getFullYear()} Aung Myo Kyaw. All rights reserved.
-      </p>
-    </div>
-  </footer>
 );
 
 const App: React.FC = () => {
@@ -205,13 +108,61 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-950 font-sans text-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-black to-gray-900 text-cyan-100">
       <ProfileHeader profile={profileData} />
-      <main className="container mx-auto max-w-5xl px-4 py-8 sm:px-8 sm:py-12">
-        <SkillsSection skills={skillsData} />
-        <MoocsSection moocsData={moocsData} />
+      <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+        <GlowingCard>
+          <h2 className="mb-4 text-2xl font-semibold text-cyan-300">
+            My MOOCs
+          </h2>
+          {moocsData ? (
+            <ul className="space-y-6">
+              {moocsData.items.map((course, idx) => (
+                <li key={idx}>
+                  <a
+                    href={course.certificateLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-lg font-bold text-white hover:underline"
+                  >
+                    {course.courseTitle}
+                  </a>
+                  {course.type === "Bundle" && course.courses && (
+                    <ul className="mt-2 space-y-1 pl-5 text-cyan-300">
+                      {course.courses.map((sub, subIdx) => (
+                        <li key={subIdx}>
+                          <a
+                            href={sub.certificateLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-base hover:underline"
+                          >
+                            ↳ {sub.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+              {moocsData.moreLink && (
+                <li className="mt-6 text-right">
+                  <a
+                    href={moocsData.moreLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-cyan-400 underline hover:text-white"
+                  >
+                    View all MOOCs →
+                  </a>
+                </li>
+              )}
+            </ul>
+          ) : (
+            <p className="text-cyan-400">Loading MOOCs...</p>
+          )}
+        </GlowingCard>
       </main>
-      <Footer />
     </div>
   );
 };
