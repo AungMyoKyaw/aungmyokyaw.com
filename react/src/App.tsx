@@ -58,70 +58,69 @@ const profileData: ProfileData = {
 };
 
 // MOOC Display Components
-const MOOCCard = ({
-  mooc,
-  index
-}: {
-  mooc: MOOCItem;
-  index: number;
-}) => {
+const MOOCCard = ({ mooc, index }: { mooc: MOOCItem; index: number }) => {
   const handleClick = () => {
     // Open certificate directly
-    window.open(mooc.certificateLink, '_blank');
+    window.open(mooc.certificateLink, "_blank");
   };
 
-  const cardColor = mooc.status === 'Completed' ? 'from-green-500 to-emerald-600' : 'from-orange-500 to-yellow-600';
-  const glowColor = mooc.status === 'Completed' ? 'shadow-green-500/50' : 'shadow-orange-500/50';
+  const cardColor =
+    mooc.status === "Completed"
+      ? "from-green-500 to-emerald-600"
+      : "from-orange-500 to-yellow-600";
+  const glowColor =
+    mooc.status === "Completed"
+      ? "shadow-green-500/50"
+      : "shadow-orange-500/50";
 
   return (
     <div
-      className="relative group cursor-pointer transform transition-all duration-500 hover:scale-110"
+      className="group relative transform cursor-pointer transition-all duration-500 hover:scale-110"
       style={{
-        animationDelay: `${index * 0.1}s`,
+        animationDelay: `${index * 0.1}s`
       }}
       onClick={handleClick}
-      onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+      onKeyDown={(e) => e.key === "Enter" && handleClick()}
       tabIndex={0}
       role="button"
       aria-label={`View certificate for ${mooc.courseTitle}`}
     >
       {/* Glow effect */}
-      <div className={`absolute inset-0 bg-gradient-to-r ${cardColor} rounded-xl blur-lg ${glowColor} shadow-2xl opacity-75`} />
+      <div
+        className={`absolute inset-0 bg-gradient-to-r ${cardColor} rounded-xl blur-lg ${glowColor} opacity-75 shadow-2xl`}
+      />
 
       {/* Card content */}
-      <div className={`
-        relative bg-gradient-to-br ${cardColor} p-6 rounded-xl border-2 border-white/20
-        backdrop-blur-sm transition-all duration-300 hover:border-white/40
-      `}>
+      <div
+        className={`relative bg-gradient-to-br ${cardColor} rounded-xl border-2 border-white/20 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/40`}
+      >
         {/* Status badge */}
-        <div className="absolute top-2 right-2">
-          <div className="bg-white/20 text-white px-2 py-1 rounded-full text-xs font-bold">
-            {mooc.status === 'Completed' ? '� COMPLETED' : '📚 IN PROGRESS'}
+        <div className="absolute right-2 top-2">
+          <div className="rounded-full bg-white/20 px-2 py-1 text-xs font-bold text-white">
+            {mooc.status === "Completed" ? "✅ COMPLETED" : "📚 IN PROGRESS"}
           </div>
         </div>
 
         {/* Course title */}
-        <h3 className="text-white font-bold text-lg mb-2 pr-24">
-          {mooc.courseTitle.length > 50 ? `${mooc.courseTitle.substring(0, 50)}...` : mooc.courseTitle}
+        <h3 className="mb-2 pr-24 text-lg font-bold text-white">
+          {mooc.courseTitle.length > 50
+            ? `${mooc.courseTitle.substring(0, 50)}...`
+            : mooc.courseTitle}
         </h3>
 
         {/* Course details */}
-        <div className="flex items-center space-x-4 text-white/80 text-sm">
-          <span className="bg-white/20 px-2 py-1 rounded">
-            {mooc.status}
-          </span>
-          <span className="bg-white/20 px-2 py-1 rounded">
-            {mooc.type}
-          </span>
+        <div className="flex items-center space-x-4 text-sm text-white/80">
+          <span className="rounded bg-white/20 px-2 py-1">{mooc.status}</span>
+          <span className="rounded bg-white/20 px-2 py-1">{mooc.type}</span>
           {mooc.courses && (
-            <span className="bg-white/20 px-2 py-1 rounded">
+            <span className="rounded bg-white/20 px-2 py-1">
               {mooc.courses.length} courses
             </span>
           )}
         </div>
 
         {/* Certificate link hint */}
-        <div className="mt-4 text-white/60 text-xs flex items-center">
+        <div className="mt-4 flex items-center text-xs text-white/60">
           <span className="mr-1">🔗</span>
           Click to view certificate
         </div>
@@ -131,8 +130,8 @@ const MOOCCard = ({
 };
 
 const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
-  <header className="relative animate-fade-in border-b border-cyan-500/30 bg-gradient-to-r from-black/80 to-purple-900/80 p-6 text-center backdrop-blur-md">
-    <div className="mx-auto h-24 w-24 overflow-hidden rounded-full border-4 border-cyan-400 shadow-lg sm:h-32 sm:w-32 animate-pulse">
+  <header className="animate-fade-in relative border-b border-cyan-500/30 bg-gradient-to-r from-black/80 to-purple-900/80 p-6 text-center backdrop-blur-md">
+    <div className="mx-auto h-24 w-24 animate-pulse overflow-hidden rounded-full border-4 border-cyan-400 shadow-lg sm:h-32 sm:w-32">
       <img
         src={profile.image}
         alt={profile.name}
@@ -151,7 +150,7 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
           target="_blank"
           rel="noreferrer"
           aria-label={link.label}
-          className="text-2xl text-cyan-300 transition hover:text-white hover:scale-110 transform"
+          className="transform text-2xl text-cyan-300 transition hover:scale-110 hover:text-white"
         >
           <i className={link.iconClass} />
         </a>
@@ -180,13 +179,13 @@ const App = () => {
 
   if (!moocsData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-black via-purple-900 to-blue-900 flex items-center justify-center relative overflow-hidden">
+      <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-black via-purple-900 to-blue-900">
         {/* Animated background */}
         <div className="absolute inset-0">
           {[...Array(50)].map((_, i) => (
             <div
               key={`loading-particle-${i}`}
-              className="absolute bg-cyan-400 rounded-full opacity-20 animate-ping"
+              className="absolute animate-ping rounded-full bg-cyan-400 opacity-20"
               style={{
                 width: `${Math.random() * 4 + 2}px`,
                 height: `${Math.random() * 4 + 2}px`,
@@ -199,9 +198,9 @@ const App = () => {
           ))}
         </div>
 
-        <div className="text-center text-cyan-300 relative z-10">
-          <div className="text-6xl mb-4 animate-bounce">🚀</div>
-          <h2 className="text-2xl font-bold mb-2">Loading Portfolio...</h2>
+        <div className="relative z-10 text-center text-cyan-300">
+          <div className="mb-4 animate-bounce text-6xl">🚀</div>
+          <h2 className="mb-2 text-2xl font-bold">Loading Portfolio...</h2>
           <div className="flex items-center justify-center space-x-2">
             <div className="h-4 w-4 animate-spin rounded-full border-2 border-cyan-400 border-t-transparent" />
             <span>Preparing your learning journey...</span>
@@ -212,13 +211,13 @@ const App = () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-black via-purple-900 to-blue-900 text-cyan-100 overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-black via-purple-900 to-blue-900 text-cyan-100">
       {/* Animated background particles */}
-      <div className="fixed inset-0 pointer-events-none">
+      <div className="pointer-events-none fixed inset-0">
         {[...Array(100)].map((_, i) => (
           <div
             key={`bg-particle-${i}`}
-            className="absolute bg-cyan-400 rounded-full opacity-10 animate-pulse"
+            className="absolute animate-pulse rounded-full bg-cyan-400 opacity-10"
             style={{
               width: `${Math.random() * 3 + 1}px`,
               height: `${Math.random() * 3 + 1}px`,
@@ -235,37 +234,34 @@ const App = () => {
       <ProfileHeader profile={profileData} />
 
       {/* Main Content */}
-      <main className="relative z-10 container mx-auto px-4 py-12">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 mb-4">
+      <main className="container relative z-10 mx-auto px-4 py-12">
+        <div className="mb-8 text-center">
+          <h2 className="mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-4xl font-bold text-transparent">
             📚 My Learning Journey
           </h2>
-          <p className="text-cyan-200 max-w-2xl mx-auto">
-            Explore my collection of completed courses and certifications. Each card represents a milestone
-            in my continuous learning journey. Click on any card to view the certificate and learn more
-            about the skills I've acquired. �
+          <p className="mx-auto max-w-2xl text-cyan-200">
+            Explore my collection of completed courses and certifications. Each
+            card represents a milestone in my continuous learning journey. Click
+            on any card to view the certificate and learn more about the skills
+            I've acquired. 🎓
           </p>
         </div>
 
         {/* MOOC Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {moocsData.items.map((mooc, index) => (
-            <MOOCCard
-              key={mooc.courseTitle}
-              mooc={mooc}
-              index={index}
-            />
+            <MOOCCard key={mooc.courseTitle} mooc={mooc} index={index} />
           ))}
         </div>
 
         {/* More link */}
         {moocsData.moreLink && (
-          <div className="text-center mt-12">
+          <div className="mt-12 text-center">
             <a
               href={moocsData.moreLink}
               target="_blank"
               rel="noreferrer"
-              className="inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-bold py-3 px-8 rounded-full hover:from-cyan-600 hover:to-purple-600 transition transform hover:scale-105"
+              className="inline-block transform rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 px-8 py-3 font-bold text-white transition hover:scale-105 hover:from-cyan-600 hover:to-purple-600"
             >
               🌟 View All My MOOCs →
             </a>

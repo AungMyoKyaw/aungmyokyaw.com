@@ -1,7 +1,7 @@
-import { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial, OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef, useMemo } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Points, PointMaterial, OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 
 // Floating Particles Component
 const FloatingParticles = () => {
@@ -24,7 +24,12 @@ const FloatingParticles = () => {
   });
 
   return (
-    <Points ref={ref} positions={particlesPosition} stride={3} frustumCulled={false}>
+    <Points
+      ref={ref}
+      positions={particlesPosition}
+      stride={3}
+      frustumCulled={false}
+    >
       <PointMaterial
         transparent
         color="#00ffff"
@@ -43,7 +48,7 @@ const FloatingGeometry = ({
   geometry
 }: {
   position: [number, number, number];
-  geometry: 'box' | 'sphere' | 'octahedron';
+  geometry: "box" | "sphere" | "octahedron";
 }) => {
   const meshRef = useRef<THREE.Mesh>(null);
 
@@ -51,17 +56,18 @@ const FloatingGeometry = ({
     if (meshRef.current) {
       meshRef.current.rotation.x = state.clock.elapsedTime * 0.5;
       meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime + position[0]) * 2;
+      meshRef.current.position.y =
+        position[1] + Math.sin(state.clock.elapsedTime + position[0]) * 2;
     }
   });
 
   const GeometryComponent = () => {
     switch (geometry) {
-      case 'box':
+      case "box":
         return <boxGeometry args={[2, 2, 2]} />;
-      case 'sphere':
+      case "sphere":
         return <sphereGeometry args={[1.5, 32, 32]} />;
-      case 'octahedron':
+      case "octahedron":
         return <octahedronGeometry args={[1.5]} />;
       default:
         return <boxGeometry args={[2, 2, 2]} />;
@@ -90,7 +96,9 @@ const PulsatingRings = () => {
   useFrame((state) => {
     ringRefs.current.forEach((ring, index) => {
       if (ring) {
-        const scale = 1 + Math.sin(state.clock.elapsedTime * 2 + index * Math.PI / 3) * 0.2;
+        const scale =
+          1 +
+          Math.sin(state.clock.elapsedTime * 2 + (index * Math.PI) / 3) * 0.2;
         ring.scale.setScalar(scale);
         ring.rotation.x = state.clock.elapsedTime * 0.1;
         ring.rotation.z = state.clock.elapsedTime * 0.05;
@@ -98,7 +106,10 @@ const PulsatingRings = () => {
     });
   });
 
-  const rings = useMemo(() => [...Array(6)].map((_, i) => ({ id: `ring-${i}`, index: i })), []);
+  const rings = useMemo(
+    () => [...Array(6)].map((_, i) => ({ id: `ring-${i}`, index: i })),
+    []
+  );
 
   return (
     <>
@@ -126,10 +137,10 @@ const PulsatingRings = () => {
 // Main 3D Scene Component
 const Scene3D = () => {
   return (
-    <div className="fixed inset-0 -z-10" style={{ pointerEvents: 'none' }}>
+    <div className="fixed inset-0 -z-10" style={{ pointerEvents: "none" }}>
       <Canvas
         camera={{ position: [0, 0, 30], fov: 75 }}
-        style={{ background: 'transparent' }}
+        style={{ background: "transparent" }}
         gl={{ alpha: true, antialias: true }}
         onCreated={({ gl }) => {
           gl.setClearColor(0x000000, 0); // Transparent background
@@ -137,7 +148,11 @@ const Scene3D = () => {
       >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} color="#00ffff" />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#0080ff" />
+        <pointLight
+          position={[-10, -10, -10]}
+          intensity={0.5}
+          color="#0080ff"
+        />
 
         <FloatingParticles />
         <PulsatingRings />

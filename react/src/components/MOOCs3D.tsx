@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Text, Html } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef, useState } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Text, Html } from "@react-three/drei";
+import * as THREE from "three";
 
 interface MOOCItem {
   courseTitle: string;
@@ -24,14 +24,19 @@ const MOOCCard3D = ({ mooc, position, index }: MOOCCard3DProps) => {
   useFrame((state) => {
     if (meshRef.current) {
       // Floating animation
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5 + index) * 0.3;
+      meshRef.current.position.y =
+        position[1] + Math.sin(state.clock.elapsedTime * 0.5 + index) * 0.3;
 
       // Rotation animation
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3 + index) * 0.1;
+      meshRef.current.rotation.y =
+        Math.sin(state.clock.elapsedTime * 0.3 + index) * 0.1;
 
       // Scale animation on hover
       const targetScale = hovered ? 1.1 : 1;
-      meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
+      meshRef.current.scale.lerp(
+        new THREE.Vector3(targetScale, targetScale, targetScale),
+        0.1
+      );
     }
   });
 
@@ -44,10 +49,10 @@ const MOOCCard3D = ({ mooc, position, index }: MOOCCard3DProps) => {
       >
         <boxGeometry args={[4, 2.5, 0.2]} />
         <meshStandardMaterial
-          color={mooc.status === 'Completed' ? '#00ff80' : '#ffaa00'}
+          color={mooc.status === "Completed" ? "#00ff80" : "#ffaa00"}
           transparent
           opacity={0.9}
-          emissive={mooc.status === 'Completed' ? '#004020' : '#402000'}
+          emissive={mooc.status === "Completed" ? "#004020" : "#402000"}
           emissiveIntensity={hovered ? 0.3 : 0.1}
         />
       </mesh>
@@ -69,7 +74,7 @@ const MOOCCard3D = ({ mooc, position, index }: MOOCCard3DProps) => {
       <Text
         position={[0, -0.5, 0.11]}
         fontSize={0.2}
-        color={mooc.status === 'Completed' ? '#00ff80' : '#ffaa00'}
+        color={mooc.status === "Completed" ? "#00ff80" : "#ffaa00"}
         anchorX="center"
         anchorY="middle"
       >
@@ -127,7 +132,8 @@ export const MOOCs3D = ({ moocsData }: MOOCs3DProps) => {
         }
 
         // Arrange in a spiral pattern
-        const angle = (index / Math.max(moocsData.items.length, 1)) * Math.PI * 4;
+        const angle =
+          (index / Math.max(moocsData.items.length, 1)) * Math.PI * 4;
         const radius = 8 + index * 0.5;
         const x = Math.cos(angle) * radius;
         const z = Math.sin(angle) * radius - 20;

@@ -1,7 +1,7 @@
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Sphere, Ring } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Sphere, Ring } from "@react-three/drei";
+import * as THREE from "three";
 
 interface Avatar3DProps {
   imageUrl: string;
@@ -15,10 +15,12 @@ const Avatar3D = ({ imageUrl, position = [0, 0, 0] }: Avatar3DProps) => {
   useFrame((state) => {
     if (groupRef.current) {
       // Gentle rotation
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
+      groupRef.current.rotation.y =
+        Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
 
       // Floating motion
-      groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 2) * 0.2;
+      groupRef.current.position.y =
+        position[1] + Math.sin(state.clock.elapsedTime * 2) * 0.2;
     }
 
     if (sphereRef.current) {
