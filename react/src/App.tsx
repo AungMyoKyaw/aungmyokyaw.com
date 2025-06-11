@@ -58,11 +58,11 @@ const profileData: ProfileData = {
 };
 
 // MOOC Display Components
-const MOOCCard = ({ 
-  mooc, 
+const MOOCCard = ({
+  mooc,
   index
-}: { 
-  mooc: MOOCItem; 
+}: {
+  mooc: MOOCItem;
   index: number;
 }) => {
   const handleClick = () => {
@@ -74,7 +74,7 @@ const MOOCCard = ({
   const glowColor = mooc.status === 'Completed' ? 'shadow-green-500/50' : 'shadow-orange-500/50';
 
   return (
-    <div 
+    <div
       className="relative group cursor-pointer transform transition-all duration-500 hover:scale-110"
       style={{
         animationDelay: `${index * 0.1}s`,
@@ -87,7 +87,7 @@ const MOOCCard = ({
     >
       {/* Glow effect */}
       <div className={`absolute inset-0 bg-gradient-to-r ${cardColor} rounded-xl blur-lg ${glowColor} shadow-2xl opacity-75`} />
-      
+
       {/* Card content */}
       <div className={`
         relative bg-gradient-to-br ${cardColor} p-6 rounded-xl border-2 border-white/20
@@ -99,12 +99,12 @@ const MOOCCard = ({
             {mooc.status === 'Completed' ? '� COMPLETED' : '📚 IN PROGRESS'}
           </div>
         </div>
-        
+
         {/* Course title */}
         <h3 className="text-white font-bold text-lg mb-2 pr-24">
           {mooc.courseTitle.length > 50 ? `${mooc.courseTitle.substring(0, 50)}...` : mooc.courseTitle}
         </h3>
-        
+
         {/* Course details */}
         <div className="flex items-center space-x-4 text-white/80 text-sm">
           <span className="bg-white/20 px-2 py-1 rounded">
@@ -119,7 +119,7 @@ const MOOCCard = ({
             </span>
           )}
         </div>
-        
+
         {/* Certificate link hint */}
         <div className="mt-4 text-white/60 text-xs flex items-center">
           <span className="mr-1">🔗</span>
@@ -174,7 +174,7 @@ const App = () => {
         console.error("Error fetching MOOCs data:", error);
       }
     };
-    
+
     fetchData();
   }, []);
 
@@ -198,7 +198,7 @@ const App = () => {
             />
           ))}
         </div>
-        
+
         <div className="text-center text-cyan-300 relative z-10">
           <div className="text-6xl mb-4 animate-bounce">🚀</div>
           <h2 className="text-2xl font-bold mb-2">Loading Portfolio...</h2>
@@ -230,10 +230,10 @@ const App = () => {
           />
         ))}
       </div>
-      
+
       {/* Profile Header */}
       <ProfileHeader profile={profileData} />
-      
+
       {/* Main Content */}
       <main className="relative z-10 container mx-auto px-4 py-12">
         <div className="text-center mb-8">
@@ -241,12 +241,12 @@ const App = () => {
             📚 My Learning Journey
           </h2>
           <p className="text-cyan-200 max-w-2xl mx-auto">
-            Explore my collection of completed courses and certifications. Each card represents a milestone 
-            in my continuous learning journey. Click on any card to view the certificate and learn more 
+            Explore my collection of completed courses and certifications. Each card represents a milestone
+            in my continuous learning journey. Click on any card to view the certificate and learn more
             about the skills I've acquired. �
           </p>
         </div>
-        
+
         {/* MOOC Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {moocsData.items.map((mooc, index) => (
@@ -257,7 +257,7 @@ const App = () => {
             />
           ))}
         </div>
-        
+
         {/* More link */}
         {moocsData.moreLink && (
           <div className="text-center mt-12">
