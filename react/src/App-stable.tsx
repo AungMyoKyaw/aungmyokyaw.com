@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// Game State Types
+interface GameState {
+  score: number;
+  collectedMOOCs: string[];
+  level: number;
+  gameMode: 'explore' | 'collect' | 'completed';
+}
+
 // Types
 interface MOOCItem {
   courseTitle: string;
@@ -57,17 +65,30 @@ const profileData: ProfileData = {
   ]
 };
 
-// MOOC Display Components
+// CSS Game Components
 const MOOCCard = ({ 
   mooc, 
-  index
+  index, 
+  onCollect, 
+  isCollected 
 }: { 
   mooc: MOOCItem; 
   index: number;
+  onCollect: (moocTitle: string) => void;
+  isCollected: boolean;
 }) => {
+  const [clicked, setClicked] = useState(false);
+  
   const handleClick = () => {
-    // Open certificate directly
-    window.open(mooc.certificateLink, '_blank');
+    if (!isCollected) {
+      setClicked(true);
+      onCollect(mooc.courseTitle);
+      // Open certificate
+      window.open(mooc.certificateLink, '_blank');
+      
+      // Reset animation after delay
+      setTimeout(() => setClicked(false), 1000);
+    }
   };
 
   const cardColor = mooc.status === 'Completed' ? 'from-green-500 to-emerald-600' : 'from-orange-500 to-yellow-600';
@@ -75,15 +96,20 @@ const MOOCCard = ({
 
   return (
     <div 
-      className="relative group cursor-pointer transform transition-all duration-500 hover:scale-110"
+      className={`
+        relative group cursor-pointer transform transition-all duration-500 hover:scale-105
+        ${isCollected ? 'opacity-50 scale-75' : 'hover:scale-110'}
+        ${clicked ? 'animate-ping' : ''}
+      `}
       style={{
         animationDelay: `${index * 0.1}s`,
+        transform: `
+          rotateX(${Math.sin(Date.now() * 0.001 + index) * 10}deg) 
+          rotateY(${Math.cos(Date.now() * 0.001 + index) * 10}deg)
+          translateZ(${Math.sin(Date.now() * 0.002 + index) * 20}px)
+        `
       }}
       onClick={handleClick}
-      onKeyDown={(e) => e.key === 'Enter' && handleClick()}
-      tabIndex={0}
-      role="button"
-      aria-label={`View certificate for ${mooc.courseTitle}`}
     >
       {/* Glow effect */}
       <div className={`absolute inset-0 bg-gradient-to-r ${cardColor} rounded-xl blur-lg ${glowColor} shadow-2xl opacity-75`} />
@@ -91,18 +117,25 @@ const MOOCCard = ({
       {/* Card content */}
       <div className={`
         relative bg-gradient-to-br ${cardColor} p-6 rounded-xl border-2 border-white/20
-        backdrop-blur-sm transition-all duration-300 hover:border-white/40
+        backdrop-blur-sm transition-all duration-300
+        ${isCollected ? 'border-gray-500/20' : 'hover:border-white/40'}
       `}>
         {/* Status badge */}
         <div className="absolute top-2 right-2">
-          <div className="bg-white/20 text-white px-2 py-1 rounded-full text-xs font-bold">
-            {mooc.status === 'Completed' ? '� COMPLETED' : '📚 IN PROGRESS'}
-          </div>
+          {isCollected ? (
+            <div className="bg-gray-600 text-white px-2 py-1 rounded-full text-xs font-bold">
+              ✅ COLLECTED
+            </div>
+          ) : (
+            <div className="bg-white/20 text-white px-2 py-1 rounded-full text-xs font-bold animate-pulse">
+              🎯 CLICK TO COLLECT
+            </div>
+          )}
         </div>
         
         {/* Course title */}
         <h3 className="text-white font-bold text-lg mb-2 pr-24">
-          {mooc.courseTitle.length > 50 ? `${mooc.courseTitle.substring(0, 50)}...` : mooc.courseTitle}
+          {mooc.courseTitle.length > 50 ? mooc.courseTitle.substring(0, 50) + '...' : mooc.courseTitle}
         </h3>
         
         {/* Course details */}
@@ -120,12 +153,79 @@ const MOOCCard = ({
           )}
         </div>
         
-        {/* Certificate link hint */}
-        <div className="mt-4 text-white/60 text-xs flex items-center">
-          <span className="mr-1">🔗</span>
-          Click to view certificate
+        {/* Collection particles */}
+        {clicked && (
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 bg-yellow-300 rounded-full animate-ping"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${i * 0.1}s`
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const GameUI = ({ 
+  gameState, 
+  totalMOOCs 
+}: { 
+  gameState: GameState; 
+  totalMOOCs: number;
+}) => {
+  const progress = totalMOOCs > 0 ? (gameState.collectedMOOCs.length / totalMOOCs) * 100 : 0;
+  
+  return (
+    <div className="fixed top-4 left-4 z-20 space-y-4">
+      {/* Game Stats */}
+      <div className="rounded-lg bg-black/80 p-4 text-cyan-300 backdrop-blur border border-cyan-500/30">
+        <h3 className="text-lg font-bold flex items-center">
+          🎮 <span className="ml-2">MOOC Collector Game</span>
+        </h3>
+        <div className="mt-2 space-y-1 text-sm">
+          <div className="flex justify-between">
+            <span>Score:</span>
+            <span className="text-yellow-300 font-bold">{gameState.score}</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Collected:</span>
+            <span className="text-green-300 font-bold">{gameState.collectedMOOCs.length}/{totalMOOCs}</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Level:</span>
+            <span className="text-purple-300 font-bold">{gameState.level}</span>
+          </div>
+        </div>
+        
+        {/* Progress Bar */}
+        <div className="mt-3">
+          <div className="text-xs mb-1">Progress: {progress.toFixed(0)}%</div>
+          <div className="w-full bg-gray-700 rounded-full h-2">
+            <div 
+              className="bg-gradient-to-r from-cyan-500 to-green-500 h-2 rounded-full transition-all duration-500"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
         </div>
       </div>
+      
+      {/* Achievement */}
+      {gameState.gameMode === 'completed' && (
+        <div className="rounded-lg bg-gradient-to-r from-yellow-600 to-yellow-400 p-4 text-yellow-900 backdrop-blur animate-bounce">
+          <h4 className="font-bold text-lg">🏆 MISSION COMPLETE!</h4>
+          <p className="text-sm mt-1">
+            You've collected all your MOOCs! 🎓✨
+          </p>
+        </div>
+      )}
     </div>
   );
 };
@@ -162,6 +262,13 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
 
 const App = () => {
   const [moocsData, setMoocsData] = useState<MOOCsData | null>(null);
+  const [gameMode, setGameMode] = useState(true);
+  const [gameState, setGameState] = useState<GameState>({
+    score: 0,
+    collectedMOOCs: [],
+    level: 1,
+    gameMode: 'explore'
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -178,6 +285,25 @@ const App = () => {
     fetchData();
   }, []);
 
+  const handleCollectMOOC = (moocTitle: string) => {
+    if (gameState.collectedMOOCs.includes(moocTitle)) return;
+    
+    setGameState(prev => {
+      const newCollected = [...prev.collectedMOOCs, moocTitle];
+      const newScore = prev.score + 100;
+      const newLevel = Math.floor(newScore / 500) + 1;
+      const isCompleted = moocsData ? newCollected.length >= moocsData.items.length : false;
+      
+      return {
+        ...prev,
+        collectedMOOCs: newCollected,
+        score: newScore,
+        level: newLevel,
+        gameMode: isCompleted ? 'completed' : 'collect'
+      };
+    });
+  };
+
   if (!moocsData) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-black via-purple-900 to-blue-900 flex items-center justify-center relative overflow-hidden">
@@ -185,7 +311,7 @@ const App = () => {
         <div className="absolute inset-0">
           {[...Array(50)].map((_, i) => (
             <div
-              key={`loading-particle-${i}`}
+              key={i}
               className="absolute bg-cyan-400 rounded-full opacity-20 animate-ping"
               style={{
                 width: `${Math.random() * 4 + 2}px`,
@@ -201,10 +327,10 @@ const App = () => {
         
         <div className="text-center text-cyan-300 relative z-10">
           <div className="text-6xl mb-4 animate-bounce">🚀</div>
-          <h2 className="text-2xl font-bold mb-2">Loading Portfolio...</h2>
+          <h2 className="text-2xl font-bold mb-2">Launching MOOC Collector...</h2>
           <div className="flex items-center justify-center space-x-2">
             <div className="h-4 w-4 animate-spin rounded-full border-2 border-cyan-400 border-t-transparent" />
-            <span>Preparing your learning journey...</span>
+            <span>Loading your achievement gallery...</span>
           </div>
         </div>
       </div>
@@ -217,7 +343,7 @@ const App = () => {
       <div className="fixed inset-0 pointer-events-none">
         {[...Array(100)].map((_, i) => (
           <div
-            key={`bg-particle-${i}`}
+            key={i}
             className="absolute bg-cyan-400 rounded-full opacity-10 animate-pulse"
             style={{
               width: `${Math.random() * 3 + 1}px`,
@@ -231,20 +357,38 @@ const App = () => {
         ))}
       </div>
       
+      {/* Game UI */}
+      {gameMode && (
+        <GameUI gameState={gameState} totalMOOCs={moocsData.items.length} />
+      )}
+      
+      {/* Mode Toggle */}
+      <div className="fixed top-4 right-4 z-20">
+        <button
+          type="button"
+          onClick={() => setGameMode(!gameMode)}
+          className="rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 text-white font-bold backdrop-blur-sm transition hover:from-purple-700 hover:to-pink-700 transform hover:scale-105"
+        >
+          {gameMode ? '🎮 Exit Game' : '🚀 Play Game'}
+        </button>
+      </div>
+      
       {/* Profile Header */}
       <ProfileHeader profile={profileData} />
       
-      {/* Main Content */}
+      {/* Game Content */}
       <main className="relative z-10 container mx-auto px-4 py-12">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 mb-4">
-            📚 My Learning Journey
+            {gameMode ? '🎯 MOOC Collection Challenge' : '📚 My Learning Journey'}
           </h2>
-          <p className="text-cyan-200 max-w-2xl mx-auto">
-            Explore my collection of completed courses and certifications. Each card represents a milestone 
-            in my continuous learning journey. Click on any card to view the certificate and learn more 
-            about the skills I've acquired. �
-          </p>
+          {gameMode && (
+            <p className="text-cyan-200 max-w-2xl mx-auto">
+              Welcome to the MOOC Collector! Each card represents one of my completed or ongoing courses. 
+              Click on the glowing cards to collect them and unlock achievements. 
+              Let's see if you can collect them all! 🏆
+            </p>
+          )}
         </div>
         
         {/* MOOC Grid */}
@@ -254,6 +398,8 @@ const App = () => {
               key={mooc.courseTitle}
               mooc={mooc}
               index={index}
+              onCollect={handleCollectMOOC}
+              isCollected={gameState.collectedMOOCs.includes(mooc.courseTitle)}
             />
           ))}
         </div>
