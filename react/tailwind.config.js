@@ -3,24 +3,43 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'primary': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        'display': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-        'accent': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'], // For special emphasis
-        'premium': ['Clash Display', 'Space Grotesk', 'Inter', 'system-ui', 'sans-serif'], // Premium alternative
-        'body': ['General Sans', 'Inter', 'system-ui', 'sans-serif'], // Alternative body font
-        'mono': ['JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'monospace'],
-        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'], // Override default sans
+        primary: [
+          "Inter",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "sans-serif"
+        ],
+        display: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
+        accent: ["Space Grotesk", "Inter", "system-ui", "sans-serif"], // For special emphasis
+        premium: [
+          "Clash Display",
+          "Space Grotesk",
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ], // Premium alternative
+        body: ["General Sans", "Inter", "system-ui", "sans-serif"], // Alternative body font
+        mono: [
+          "JetBrains Mono",
+          "SF Mono",
+          "Monaco",
+          "Inconsolata",
+          "Roboto Mono",
+          "monospace"
+        ],
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"] // Override default sans
       },
       fontWeight: {
-        'thin': '100',
-        'extralight': '200',
-        'light': '300',
-        'normal': '400',
-        'medium': '500',
-        'semibold': '600',
-        'bold': '700',
-        'extrabold': '800',
-        'black': '900',
+        thin: "100",
+        extralight: "200",
+        light: "300",
+        normal: "400",
+        medium: "500",
+        semibold: "600",
+        bold: "700",
+        extrabold: "800",
+        black: "900"
       },
       colors: {
         glass: {
@@ -53,11 +72,20 @@ export default {
         115: "115%"
       },
       dropShadow: {
-        'card-title': ['0 2px 4px rgba(0, 0, 0, 0.8)', '0 1px 2px rgba(0, 0, 0, 0.7)'],
-        'card-action': '0 1px 2px rgba(0, 0, 0, 0.6)',
-        'text-high': ['0 2px 4px rgba(0, 0, 0, 0.8)', '0 1px 2px rgba(0, 0, 0, 0.9)'],
-        'text-medium': ['0 1px 3px rgba(0, 0, 0, 0.7)', '0 2px 4px rgba(0, 0, 0, 0.5)'],
-        'text-subtle': '0 1px 2px rgba(0, 0, 0, 0.4)'
+        "card-title": [
+          "0 2px 4px rgba(0, 0, 0, 0.8)",
+          "0 1px 2px rgba(0, 0, 0, 0.7)"
+        ],
+        "card-action": "0 1px 2px rgba(0, 0, 0, 0.6)",
+        "text-high": [
+          "0 2px 4px rgba(0, 0, 0, 0.8)",
+          "0 1px 2px rgba(0, 0, 0, 0.9)"
+        ],
+        "text-medium": [
+          "0 1px 3px rgba(0, 0, 0, 0.7)",
+          "0 2px 4px rgba(0, 0, 0, 0.5)"
+        ],
+        "text-subtle": "0 1px 2px rgba(0, 0, 0, 0.4)"
       },
       backgroundImage: {
         "liquid-gradient":
@@ -97,7 +125,7 @@ export default {
           "0 8px 24px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
         "spectrum-glow-hover":
           "0 16px 48px rgba(139, 92, 246, 0.5), 0 8px 24px rgba(59, 130, 246, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.3)",
-        "stats":
+        stats:
           "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
         "stats-hover":
           "0 20px 64px rgba(0, 0, 0, 0.35), 0 8px 32px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15)"
@@ -110,25 +138,25 @@ export default {
     }
   },
   plugins: [
-    function({ addUtilities, theme }) {
+    function ({ addUtilities, theme }) {
       const newUtilities = {
         // Micro Animation Utilities
-        '.micro-bounce': {
-          'transition': 'transform 0.15s cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+        ".micro-bounce": {
+          transition: "transform 0.15s cubic-bezier(0.68, -0.55, 0.265, 1.55)"
         },
 
-        '.micro-bounce:active': {
-          'transform': 'scale(0.95)'
+        ".micro-bounce:active": {
+          transform: "scale(0.95)"
         },
 
         // GPU Acceleration
-        '.gpu-accelerated': {
-          'will-change': 'transform',
-          'transform': 'translateZ(0)'
+        ".gpu-accelerated": {
+          "will-change": "transform",
+          transform: "translateZ(0)"
         }
-      }
+      };
 
-      addUtilities(newUtilities)
+      addUtilities(newUtilities);
     }
   ]
 };

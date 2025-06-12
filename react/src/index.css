@@ -5,11 +5,14 @@
 /* Professional Typography System */
 :root {
   /* Font Families */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-premium: 'Clash Display', 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-body: 'General Sans', 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-premium: "Clash Display", "Space Grotesk", "Inter", system-ui,
+    sans-serif;
+  --font-body: "General Sans", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Monaco", "Inconsolata",
+    "Roboto Mono", monospace;
 
   /* Font Weights */
   --font-weight-thin: 100;
@@ -23,19 +26,19 @@
   --font-weight-black: 900;
 
   /* Typography Scale - Golden Ratio Based */
-  --text-xs: 0.75rem;    /* 12px */
-  --text-sm: 0.875rem;   /* 14px */
-  --text-base: 1rem;     /* 16px */
-  --text-lg: 1.125rem;   /* 18px */
-  --text-xl: 1.25rem;    /* 20px */
-  --text-2xl: 1.5rem;    /* 24px */
-  --text-3xl: 1.875rem;  /* 30px */
-  --text-4xl: 2.25rem;   /* 36px */
-  --text-5xl: 3rem;      /* 48px */
-  --text-6xl: 3.75rem;   /* 60px */
-  --text-7xl: 4.5rem;    /* 72px */
-  --text-8xl: 6rem;      /* 96px */
-  --text-9xl: 8rem;      /* 128px */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+  --text-6xl: 3.75rem; /* 60px */
+  --text-7xl: 4.5rem; /* 72px */
+  --text-8xl: 6rem; /* 96px */
+  --text-9xl: 8rem; /* 128px */
 
   /* Line Heights - Harmonious */
   --leading-none: 1;
@@ -56,15 +59,16 @@
 
 /* Enhanced Font Loading Strategy */
 @font-face {
-  font-family: 'Inter var';
+  font-family: "Inter var";
   font-weight: 100 900;
   font-display: swap;
-  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 }
 
 /* Font Loading Optimization */
 .font-loading-fallback {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+    sans-serif;
 }
 
 /* Typography Component Classes */
@@ -181,25 +185,36 @@
 }
 
 @keyframes liquid-text-flow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 /* Responsive Typography */
 @media (max-width: 768px) {
-  .text-hero { font-size: clamp(2rem, 10vw, 3rem); }
-  .text-display-lg { font-size: clamp(1.5rem, 8vw, 2.5rem); }
-  .text-display-md { font-size: clamp(1.25rem, 6vw, 2rem); }
+  .text-hero {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+  .text-display-lg {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+  .text-display-md {
+    font-size: clamp(1.25rem, 6vw, 2rem);
+  }
 }
 
 /* Font Feature Settings for Better Typography */
 .font-features {
   font-feature-settings:
-    "liga" 1,     /* ligatures */
-    "kern" 1,     /* kerning */
-    "calt" 1,     /* contextual alternates */
-    "tnum" 1,     /* tabular numbers */
-    "ss01" 1;     /* stylistic set 1 */
+    "liga" 1,
+    /* ligatures */ "kern" 1,
+    /* kerning */ "calt" 1,
+    /* contextual alternates */ "tnum" 1,
+    /* tabular numbers */ "ss01" 1; /* stylistic set 1 */
 }
 
 /* Apple Liquid Glass Design System - Enhanced */
@@ -1102,7 +1117,12 @@ body {
 }
 
 /* Base Typography Styles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: var(--font-weight-semibold);
   letter-spacing: -0.01em;
@@ -1116,7 +1136,8 @@ body {
   line-height: 1.6;
 }
 
-code, pre {
+code,
+pre {
   font-family: var(--font-mono);
   font-weight: var(--font-weight-normal);
   letter-spacing: 0.02em;

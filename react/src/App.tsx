@@ -84,11 +84,11 @@ const MOOCCard = ({ mooc, index }: { mooc: MOOCItem; index: number }) => {
       aria-label={`View certificate for ${mooc.courseTitle}`}
     >
       {/* Clean, structured card layout */}
-      <div className="bg-black/40 backdrop-blur-2xl backdrop-saturate-200 backdrop-brightness-115 border border-white/20 rounded-2xl shadow-glass h-full min-h-[180px] p-6 transition-all duration-500 group-hover:scale-[1.02]">
+      <div className="h-full min-h-[180px] rounded-2xl border border-white/20 bg-black/40 p-6 shadow-glass backdrop-blur-2xl backdrop-brightness-115 backdrop-saturate-200 transition-all duration-500 group-hover:scale-[1.02]">
         {/* Header row with title and status */}
         <div className="mb-4 flex items-start justify-between">
           {/* Course title - clean left alignment */}
-          <h3 className="text-white font-bold leading-tight tracking-tight drop-shadow-card-title flex-1 pr-4 text-left text-lg">
+          <h3 className="flex-1 pr-4 text-left text-lg font-bold leading-tight tracking-tight text-white drop-shadow-card-title">
             {mooc.courseTitle.replace(" ⏳", "").length > 65
               ? `${mooc.courseTitle.replace(" ⏳", "").substring(0, 65)}...`
               : mooc.courseTitle.replace(" ⏳", "")}
@@ -126,7 +126,7 @@ const MOOCCard = ({ mooc, index }: { mooc: MOOCItem; index: number }) => {
 
         {/* Bottom action area - enhanced contrast */}
         <div className="absolute bottom-4 left-6 right-6">
-          <div className="text-white/70 font-semibold drop-shadow-card-action flex items-center justify-between transition-all duration-300 group-hover:text-white">
+          <div className="flex items-center justify-between font-semibold text-white/70 drop-shadow-card-action transition-all duration-300 group-hover:text-white">
             <div className="flex items-center">
               <div
                 className={`mr-2 h-2.5 w-2.5 rounded-full shadow-sm ${
@@ -208,14 +208,14 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
       </div>
 
       {/* Name with improved contrast */}
-      <h1 className="mb-4 text-hero font-display font-black tracking-tight">
+      <h1 className="text-hero mb-4 font-display font-black tracking-tight">
         <span className="text-glass-primary">{profile.name}</span>
       </h1>
 
       {/* Title with improved readability */}
       <div className="mb-8 inline-block">
-        <div className="bg-black/40 backdrop-blur-2xl backdrop-saturate-200 backdrop-brightness-115 border border-white/20 rounded-2xl shadow-glass px-6 py-3">
-          <p className="text-body-lg text-glass-primary font-primary">
+        <div className="rounded-2xl border border-white/20 bg-black/40 px-6 py-3 shadow-glass backdrop-blur-2xl backdrop-brightness-115 backdrop-saturate-200">
+          <p className="text-body-lg font-primary text-glass-primary">
             {profile.title}
           </p>
         </div>
@@ -232,7 +232,7 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
             aria-label={link.label}
             className="group relative"
           >
-            <div className="bg-black/40 backdrop-blur-2xl backdrop-saturate-200 backdrop-brightness-115 border border-white/20 rounded-2xl shadow-glass micro-bounce text-white drop-shadow-text-high gpu-accelerated flex h-14 w-14 items-center justify-center text-xl transition-all duration-500 group-hover:border-white/40 group-hover:bg-black/50 group-hover:shadow-lg">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-black/40 text-xl text-white shadow-glass drop-shadow-text-high backdrop-blur-2xl backdrop-brightness-115 backdrop-saturate-200 transition-all duration-500 micro-bounce gpu-accelerated group-hover:border-white/40 group-hover:bg-black/50 group-hover:shadow-lg">
               <i className={link.iconClass} />
               {/* Subtle glow effect */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -403,11 +403,11 @@ const App = () => {
       <main className="container relative z-10 mx-auto px-6 py-16">
         {/* Section Header with better readability */}
         <div className="mb-16 text-center">
-          <div className="bg-black/40 backdrop-blur-2xl backdrop-saturate-200 backdrop-brightness-115 border border-white/20 rounded-2xl shadow-glass mb-8 inline-block p-8">
-            <h2 className="text-white drop-shadow-text-high mb-6 text-5xl font-black">
+          <div className="mb-8 inline-block rounded-2xl border border-white/20 bg-black/40 p-8 shadow-glass backdrop-blur-2xl backdrop-brightness-115 backdrop-saturate-200">
+            <h2 className="mb-6 text-5xl font-black text-white drop-shadow-text-high">
               📚 My Learning Journey
             </h2>
-            <p className="text-white/95 drop-shadow-text-medium mx-auto max-w-3xl text-lg leading-relaxed">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-white/95 drop-shadow-text-medium">
               Discover my collection of completed courses and certifications.
               Each card represents a milestone in my continuous learning
               adventure.
@@ -421,15 +421,15 @@ const App = () => {
 
           {/* Achievement stats with improved contrast and meaningful counts */}
           <div className="mt-8 flex flex-wrap justify-center gap-6">
-            <div className="bg-black/50 backdrop-blur-xl border border-white/15 rounded-full px-6 py-4 shadow-stats transition-all duration-300 hover:-translate-y-0.5 hover:shadow-stats-hover hover:border-white/25">
+            <div className="rounded-full border border-white/15 bg-black/50 px-6 py-4 shadow-stats backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:shadow-stats-hover">
               <span className="block text-2xl font-bold text-green-300">
                 {getCompletedCourses(moocsData)}
               </span>
-              <p className="text-white/95 drop-shadow-text-medium mt-1 text-sm">
+              <p className="mt-1 text-sm text-white/95 drop-shadow-text-medium">
                 Courses Completed
               </p>
             </div>
-            <div className="bg-black/50 backdrop-blur-xl border border-white/15 rounded-full px-6 py-4 shadow-stats transition-all duration-300 hover:-translate-y-0.5 hover:shadow-stats-hover hover:border-white/25">
+            <div className="rounded-full border border-white/15 bg-black/50 px-6 py-4 shadow-stats backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:shadow-stats-hover">
               <span className="block text-2xl font-bold text-orange-300">
                 {
                   moocsData.items.filter(
@@ -437,21 +437,25 @@ const App = () => {
                   ).length
                 }
               </span>
-              <p className="text-white/95 drop-shadow-text-medium mt-1 text-sm">In Progress</p>
+              <p className="mt-1 text-sm text-white/95 drop-shadow-text-medium">
+                In Progress
+              </p>
             </div>
-            <div className="bg-black/50 backdrop-blur-xl border border-white/15 rounded-full px-6 py-4 shadow-stats transition-all duration-300 hover:-translate-y-0.5 hover:shadow-stats-hover hover:border-white/25">
+            <div className="rounded-full border border-white/15 bg-black/50 px-6 py-4 shadow-stats backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:shadow-stats-hover">
               <span className="block text-2xl font-bold text-blue-300">
                 {moocsData.items.length}
               </span>
-              <p className="text-white/95 drop-shadow-text-medium mt-1 text-sm">
+              <p className="mt-1 text-sm text-white/95 drop-shadow-text-medium">
                 Specializations
               </p>
             </div>
-            <div className="bg-black/50 backdrop-blur-xl border border-white/15 rounded-full px-6 py-4 shadow-stats transition-all duration-300 hover:-translate-y-0.5 hover:shadow-stats-hover hover:border-white/25">
+            <div className="rounded-full border border-white/15 bg-black/50 px-6 py-4 shadow-stats backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:shadow-stats-hover">
               <span className="block text-2xl font-bold text-purple-300">
                 {getTotalCourses(moocsData)}
               </span>
-              <p className="text-white/95 drop-shadow-text-medium mt-1 text-sm">Total Courses</p>
+              <p className="mt-1 text-sm text-white/95 drop-shadow-text-medium">
+                Total Courses
+              </p>
             </div>
           </div>
         </div>
@@ -477,7 +481,7 @@ const App = () => {
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600/30 to-blue-600/30 blur-xl transition-all duration-500 group-hover:blur-2xl"></div>
 
               {/* Main button container */}
-              <div className="bg-black/40 backdrop-blur-2xl backdrop-saturate-200 backdrop-brightness-115 border-2 border-white/20 rounded-2xl shadow-glass relative px-8 py-6 transition-all duration-500 group-hover:scale-105 group-hover:border-white/40 group-hover:shadow-2xl">
+              <div className="relative rounded-2xl border-2 border-white/20 bg-black/40 px-8 py-6 shadow-glass backdrop-blur-2xl backdrop-brightness-115 backdrop-saturate-200 transition-all duration-500 group-hover:scale-105 group-hover:border-white/40 group-hover:shadow-2xl">
                 <span className="flex items-center justify-center text-lg font-bold tracking-wide text-white">
                   {/* Enhanced icon with better spacing */}
                   <span className="mr-3 text-2xl group-hover:animate-pulse">
@@ -485,7 +489,7 @@ const App = () => {
                   </span>
 
                   {/* Main text with improved typography */}
-                  <span className="text-white font-bold leading-tight tracking-tight drop-shadow-card-title text-xl transition-colors duration-300 group-hover:text-white">
+                  <span className="text-xl font-bold leading-tight tracking-tight text-white drop-shadow-card-title transition-colors duration-300 group-hover:text-white">
                     Explore All My Learning Adventures
                   </span>
 

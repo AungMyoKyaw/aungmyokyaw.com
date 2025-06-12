@@ -102,12 +102,14 @@ const MOOCCard3D = ({ mooc, position, index }: MOOCCard3DProps) => {
       {hovered && (
         <Html position={[0, 1.5, 0]} center>
           <div className="pointer-events-none rounded-lg bg-black/90 p-2 text-center backdrop-blur">
-            <div className="text-heading text-sm text-white font-semibold">{mooc.courseTitle}</div>
-            <div className="text-caption mt-1 text-xs opacity-80 text-white">
+            <div className="text-heading text-sm font-semibold text-white">
+              {mooc.courseTitle}
+            </div>
+            <div className="text-caption mt-1 text-xs text-white opacity-80">
               {mooc.status} • {mooc.type}
             </div>
             {mooc.courses && (
-              <div className="text-caption mt-1 text-xs opacity-80 text-white">
+              <div className="text-caption mt-1 text-xs text-white opacity-80">
                 {mooc.courses.length} courses included
               </div>
             )}
