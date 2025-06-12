@@ -208,14 +208,14 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
       </div>
 
       {/* Name with improved contrast */}
-      <h1 className="mb-4 text-4xl font-black tracking-tight sm:text-6xl">
-        <span className="text-white drop-shadow-lg">{profile.name}</span>
+      <h1 className="mb-4 text-hero font-display font-black tracking-tight">
+        <span className="text-glass-primary">{profile.name}</span>
       </h1>
 
       {/* Title with improved readability */}
       <div className="mb-8 inline-block">
         <div className="bg-black/40 backdrop-blur-2xl backdrop-saturate-200 backdrop-brightness-115 border border-white/20 rounded-2xl shadow-glass px-6 py-3">
-          <p className="text-white drop-shadow-text-high text-lg font-medium sm:text-xl">
+          <p className="text-body-lg text-glass-primary font-primary">
             {profile.title}
           </p>
         </div>

@@ -2,6 +2,26 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        'primary': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        'display': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        'accent': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'], // For special emphasis
+        'premium': ['Clash Display', 'Space Grotesk', 'Inter', 'system-ui', 'sans-serif'], // Premium alternative
+        'body': ['General Sans', 'Inter', 'system-ui', 'sans-serif'], // Alternative body font
+        'mono': ['JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'monospace'],
+        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'], // Override default sans
+      },
+      fontWeight: {
+        'thin': '100',
+        'extralight': '200',
+        'light': '300',
+        'normal': '400',
+        'medium': '500',
+        'semibold': '600',
+        'bold': '700',
+        'extrabold': '800',
+        'black': '900',
+      },
       colors: {
         glass: {
           primary: "rgba(255, 255, 255, 0.09)",

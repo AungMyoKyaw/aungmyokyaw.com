@@ -66,6 +66,8 @@ const MOOCCard3D = ({ mooc, position, index }: MOOCCard3DProps) => {
         anchorY="middle"
         maxWidth={3.5}
         textAlign="center"
+        font="/fonts/Inter-SemiBold.woff2"
+        letterSpacing={-0.01}
       >
         {mooc.courseTitle}
       </Text>
@@ -77,6 +79,8 @@ const MOOCCard3D = ({ mooc, position, index }: MOOCCard3DProps) => {
         color={mooc.status === "Completed" ? "#00ff80" : "#ffaa00"}
         anchorX="center"
         anchorY="middle"
+        font="/fonts/Inter-Medium.woff2"
+        letterSpacing={0.01}
       >
         {mooc.status}
       </Text>
@@ -88,6 +92,8 @@ const MOOCCard3D = ({ mooc, position, index }: MOOCCard3DProps) => {
         color="#00ffff"
         anchorX="center"
         anchorY="middle"
+        font="/fonts/JetBrainsMono-Regular.woff2"
+        letterSpacing={0.02}
       >
         {mooc.type}
       </Text>
@@ -95,13 +101,13 @@ const MOOCCard3D = ({ mooc, position, index }: MOOCCard3DProps) => {
       {/* Hover tooltip */}
       {hovered && (
         <Html position={[0, 1.5, 0]} center>
-          <div className="pointer-events-none rounded-lg bg-black/90 p-2 text-center text-sm text-white backdrop-blur">
-            <div className="font-semibold">{mooc.courseTitle}</div>
-            <div className="mt-1 text-xs opacity-80">
+          <div className="pointer-events-none rounded-lg bg-black/90 p-2 text-center backdrop-blur">
+            <div className="text-heading text-sm text-white font-semibold">{mooc.courseTitle}</div>
+            <div className="text-caption mt-1 text-xs opacity-80 text-white">
               {mooc.status} • {mooc.type}
             </div>
             {mooc.courses && (
-              <div className="mt-1 text-xs opacity-80">
+              <div className="text-caption mt-1 text-xs opacity-80 text-white">
                 {mooc.courses.length} courses included
               </div>
             )}
