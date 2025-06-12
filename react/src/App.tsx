@@ -332,7 +332,7 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => {
 
       {/* Header content with enhanced semantics */}
       <div
-        className={`relative z-10 p-8 text-center transition-all duration-1000 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"} `}
+        className={`relative z-10 p-8 text-center transition-all duration-1000 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-0 opacity-100"} `}
       >
         {/* Professional Avatar with enhanced accessibility */}
         <div className="relative mx-auto mb-8 h-32 w-32 sm:h-40 sm:w-40">
