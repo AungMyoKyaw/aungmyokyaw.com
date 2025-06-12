@@ -75,6 +75,7 @@ const MOOCCard = ({ mooc, index }: { mooc: MOOCItem; index: number }) => {
 
   return (
     <button
+      type="button"
       className="group relative w-full animate-fade-in-up cursor-pointer border-none bg-transparent p-0 transition-all duration-500 ease-out"
       style={{
         animationDelay: `${index * 0.15}s`
@@ -133,7 +134,7 @@ const MOOCCard = ({ mooc, index }: { mooc: MOOCItem; index: number }) => {
                     ? "bg-green-400 shadow-green-400/50"
                     : "bg-orange-400 shadow-orange-400/50"
                 }`}
-              ></div>
+              />
               <span className="text-sm font-semibold">View Certificate</span>
             </div>
             <div className="transform transition-transform duration-300 group-hover:translate-x-1">
@@ -141,6 +142,7 @@ const MOOCCard = ({ mooc, index }: { mooc: MOOCItem; index: number }) => {
                 className="h-4 w-4 opacity-60 group-hover:opacity-100"
                 fill="currentColor"
                 viewBox="0 0 20 20"
+                aria-hidden="true"
               >
                 <path
                   fillRule="evenodd"
@@ -176,13 +178,13 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
   <header className="relative overflow-hidden">
     {/* Liquid glass header background */}
     <div className="frosted-glass absolute inset-0">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/15 to-indigo-900/20"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/15 to-indigo-900/20" />
       {/* Animated background orbs */}
-      <div className="absolute left-10 top-10 h-32 w-32 animate-liquid-float rounded-full bg-gradient-to-r from-blue-400/20 to-purple-600/20 blur-3xl"></div>
+      <div className="absolute left-10 top-10 h-32 w-32 animate-liquid-float rounded-full bg-gradient-to-r from-blue-400/20 to-purple-600/20 blur-3xl" />
       <div
         className="absolute bottom-10 right-10 h-40 w-40 animate-liquid-float rounded-full bg-gradient-to-r from-pink-400/20 to-blue-500/20 blur-3xl"
         style={{ animationDelay: "2s" }}
-      ></div>
+      />
     </div>
 
     {/* Header content */}
@@ -190,7 +192,7 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
       {/* Professional Avatar with enhanced visibility */}
       <div className="relative mx-auto mb-8 h-32 w-32 sm:h-40 sm:w-40">
         {/* Subtle glow ring */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-pink-500/20 blur-lg"></div>
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-pink-500/20 blur-lg" />
 
         {/* Clean avatar container */}
         <div className="relative overflow-hidden rounded-full border-4 border-white/30 bg-white/10 backdrop-blur-md">
@@ -201,7 +203,7 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
             loading="eager"
           />
           {/* Subtle overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10" />
         </div>
       </div>
 
@@ -233,7 +235,7 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
             <div className="glass-container-readable micro-bounce text-high-contrast gpu-accelerated flex h-14 w-14 items-center justify-center text-xl transition-all duration-300 hover:text-white group-hover:scale-110">
               <i className={link.iconClass} />
               {/* Subtle hover effect */}
-              <div className="absolute inset-0 rounded-full bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+              <div className="absolute inset-0 rounded-full bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
           </a>
         ))}
@@ -260,6 +262,7 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
 
 const App = () => {
   const [moocsData, setMoocsData] = useState<MOOCsData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Helper function to calculate total courses (including individual courses in bundles)
   const getTotalCourses = (data: MOOCsData) => {
@@ -287,62 +290,101 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const { data } = await axios.get<MOOCsData>(
           "https://moocs.aungmyokyaw.com/moocsData.json"
         );
+
+        // Simulate loading time for better UX (remove in production)
+        await new Promise((resolve) => setTimeout(resolve, 4000));
+
         setMoocsData(data);
       } catch (error) {
         console.error("Error fetching MOOCs data:", error);
+        // For demo purposes, set some sample data
+        setMoocsData({
+          total: 1,
+          items: [
+            {
+              courseTitle: "Demo Course",
+              status: "Completed",
+              type: "Course",
+              certificateLink: "#"
+            }
+          ]
+        });
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  if (!moocsData) {
+  if (isLoading || !moocsData) {
     return (
-      <div className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <div className="enhanced-loading-wrapper relative flex min-h-screen items-center justify-center overflow-hidden">
         {/* 3D background scene */}
         <Scene3D />
 
-        {/* Liquid glass loading container */}
+        {/* Enhanced liquid glass loading container */}
         <div className="relative z-10 text-center">
-          <div className="liquid-glass mx-auto max-w-md p-12">
-            {/* Animated loading icon */}
-            <div className="relative mb-8">
-              <div className="mx-auto flex h-20 w-20 animate-morphing-blob items-center justify-center rounded-full bg-gradient-to-r from-cyan-400/20 to-purple-600/20">
-                <div className="animate-liquid-glow text-4xl">🚀</div>
+          <div className="loading-glass-enhanced mx-auto max-w-xl p-20">
+            {/* Enhanced animated loading icon */}
+            <div className="relative mb-16">
+              {/* Enhanced pulse rings */}
+              <div className="liquid-icon-container">
+                <div className="pulse-ring-enhanced" />
+                <div className="pulse-ring-enhanced" />
+                <div className="pulse-ring-enhanced" />
+
+                {/* Enhanced rocket icon */}
+                <div className="rocket-icon-enhanced">🚀</div>
+
+                {/* Enhanced orbital rings */}
+                <div className="orbital-rings-enhanced" />
+                <div className="orbital-rings-enhanced" />
               </div>
-              {/* Orbital rings */}
-              <div className="absolute inset-0 animate-spin rounded-full border-2 border-cyan-400/30"></div>
-              <div
-                className="absolute inset-2 animate-spin rounded-full border border-purple-400/20"
-                style={{
-                  animationDirection: "reverse",
-                  animationDuration: "3s"
-                }}
-              ></div>
             </div>
 
-            <h2 className="mb-4 text-2xl font-bold">
-              <span className="liquid-gradient-text">Loading Portfolio...</span>
+            {/* Enhanced title with advanced glow effect */}
+            <h2 className="mb-10 text-4xl font-bold">
+              <span className="liquid-gradient-text animate-text-glow">
+                Loading Portfolio...
+              </span>
             </h2>
 
-            <div className="mb-4 flex items-center justify-center space-x-3">
-              <div className="h-3 w-3 animate-pulse rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"></div>
-              <div
-                className="h-3 w-3 animate-pulse rounded-full bg-gradient-to-r from-purple-400 to-pink-500"
-                style={{ animationDelay: "0.2s" }}
-              ></div>
-              <div
-                className="h-3 w-3 animate-pulse rounded-full bg-gradient-to-r from-green-400 to-emerald-500"
-                style={{ animationDelay: "0.4s" }}
-              ></div>
+            {/* Enhanced loading dots */}
+            <div className="enhanced-dots-container">
+              <div className="enhanced-loading-dot" />
+              <div className="enhanced-loading-dot" />
+              <div className="enhanced-loading-dot" />
             </div>
 
-            <p className="text-sm text-white/70">
-              Preparing your learning journey...
-            </p>
+            {/* Progress indicator */}
+            <div className="progress-indicator">
+              <div className="progress-bar" />
+            </div>
+            <div className="progress-text">Initializing portfolio data...</div>
+
+            {/* Enhanced status text */}
+            <div className="space-y-4">
+              <p className="status-text-enhanced text-xl">
+                Preparing your learning journey...
+              </p>
+              <div className="flex items-center justify-center space-x-3 text-base text-white/80">
+                <span className="floating-emoji-enhanced">✨</span>
+                <span className="font-medium">
+                  Loading certificates and achievements
+                </span>
+                <span
+                  className="floating-emoji-enhanced"
+                  style={{ animationDelay: "1s" }}
+                >
+                  🎓
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

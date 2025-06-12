@@ -42,7 +42,16 @@ export default {
         "spectrum-shift": "spectrum-shift 6s linear infinite",
         "liquid-pulse": "liquid-pulse 2s ease-in-out infinite",
         "aurora-shift": "aurora-shift 8s ease-in-out infinite",
-        "fade-in-up": "fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1)"
+        "fade-in-up": "fade-in-up 1s cubic-bezier(0.16, 1, 0.3, 1)",
+        "pulse-ring":
+          "pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite",
+        "loading-dots": "loading-dots 1.4s ease-in-out infinite both",
+        "orbital-rotation": "orbital-rotation 8s linear infinite",
+        "reverse-orbital": "reverse-orbital 6s linear infinite",
+        "text-glow": "text-glow 3s ease-in-out infinite",
+        "particle-float": "particle-float 4s ease-in-out infinite",
+        "liquid-wave": "liquid-wave 3s ease-in-out infinite",
+        "breathing-glow": "breathing-glow 2s ease-in-out infinite"
       },
       boxShadow: {
         glass:
