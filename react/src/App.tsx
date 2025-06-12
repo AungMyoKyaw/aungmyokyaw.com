@@ -232,10 +232,10 @@ const ProfileHeader = ({ profile }: { profile: ProfileData }) => (
             aria-label={link.label}
             className="group relative"
           >
-            <div className="bg-black/40 backdrop-blur-2xl backdrop-saturate-200 backdrop-brightness-115 border border-white/20 rounded-2xl shadow-glass micro-bounce text-white drop-shadow-text-high gpu-accelerated flex h-14 w-14 items-center justify-center text-xl transition-all duration-300 hover:text-white group-hover:scale-110">
+            <div className="bg-black/40 backdrop-blur-2xl backdrop-saturate-200 backdrop-brightness-115 border border-white/20 rounded-2xl shadow-glass micro-bounce text-white drop-shadow-text-high gpu-accelerated flex h-14 w-14 items-center justify-center text-xl transition-all duration-500 group-hover:border-white/40 group-hover:bg-black/50 group-hover:shadow-lg">
               <i className={link.iconClass} />
-              {/* Subtle hover effect */}
-              <div className="absolute inset-0 rounded-full bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              {/* Subtle glow effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             </div>
           </a>
         ))}
