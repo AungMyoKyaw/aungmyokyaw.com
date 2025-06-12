@@ -26,6 +26,19 @@ export default {
         strong: "40px",
         extreme: "60px"
       },
+      backdropSaturate: {
+        200: "200%"
+      },
+      backdropBrightness: {
+        115: "115%"
+      },
+      dropShadow: {
+        'card-title': ['0 2px 4px rgba(0, 0, 0, 0.8)', '0 1px 2px rgba(0, 0, 0, 0.7)'],
+        'card-action': '0 1px 2px rgba(0, 0, 0, 0.6)',
+        'text-high': ['0 2px 4px rgba(0, 0, 0, 0.8)', '0 1px 2px rgba(0, 0, 0, 0.9)'],
+        'text-medium': ['0 1px 3px rgba(0, 0, 0, 0.7)', '0 2px 4px rgba(0, 0, 0, 0.5)'],
+        'text-subtle': '0 1px 2px rgba(0, 0, 0, 0.4)'
+      },
       backgroundImage: {
         "liquid-gradient":
           "linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 25%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.08) 75%, rgba(255, 255, 255, 0.04) 100%)",
@@ -63,7 +76,11 @@ export default {
         "spectrum-glow":
           "0 8px 24px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
         "spectrum-glow-hover":
-          "0 16px 48px rgba(139, 92, 246, 0.5), 0 8px 24px rgba(59, 130, 246, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.3)"
+          "0 16px 48px rgba(139, 92, 246, 0.5), 0 8px 24px rgba(59, 130, 246, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.3)",
+        "stats":
+          "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+        "stats-hover":
+          "0 20px 64px rgba(0, 0, 0, 0.35), 0 8px 32px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15)"
       },
       borderRadius: {
         liquid: "24px",
@@ -72,5 +89,26 @@ export default {
       }
     }
   },
-  plugins: []
+  plugins: [
+    function({ addUtilities, theme }) {
+      const newUtilities = {
+        // Micro Animation Utilities
+        '.micro-bounce': {
+          'transition': 'transform 0.15s cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+        },
+
+        '.micro-bounce:active': {
+          'transform': 'scale(0.95)'
+        },
+
+        // GPU Acceleration
+        '.gpu-accelerated': {
+          'will-change': 'transform',
+          'transform': 'translateZ(0)'
+        }
+      }
+
+      addUtilities(newUtilities)
+    }
+  ]
 };
