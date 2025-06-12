@@ -888,11 +888,16 @@ body {
 }
 
 .card-micro-feedback::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   opacity: 0;
   transform: translateX(-100%) skewX(-15deg);
   transition: all 0.6s ease;
@@ -1700,13 +1705,21 @@ button {
 
 /* 🎯 Enhanced Status Indicators */
 .status-indicator-completed {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(16, 185, 129, 0.4));
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.3),
+    rgba(16, 185, 129, 0.4)
+  );
   border: 1px solid rgba(34, 197, 94, 0.6);
   box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
 }
 
 .status-indicator-progress {
-  background: linear-gradient(135deg, rgba(251, 146, 60, 0.3), rgba(245, 101, 101, 0.4));
+  background: linear-gradient(
+    135deg,
+    rgba(251, 146, 60, 0.3),
+    rgba(245, 101, 101, 0.4)
+  );
   border: 1px solid rgba(251, 146, 60, 0.6);
   box-shadow: 0 0 20px rgba(251, 146, 60, 0.2);
 }
@@ -1736,7 +1749,11 @@ button {
 
 /* 🎯 Enhanced Loading States */
 .enhanced-loading-wrapper {
-  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(139, 92, 246, 0.1) 0%,
+    transparent 70%
+  );
 }
 
 .loading-glass-enhanced {
@@ -1775,16 +1792,22 @@ button {
 }
 
 .interactive-feedback::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease;
+  transition:
+    width 0.3s ease,
+    height 0.3s ease;
   pointer-events: none;
 }
 

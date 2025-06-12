@@ -68,7 +68,7 @@ const EnhancedLoader: React.FC<EnhancedLoaderProps> = ({ onComplete }) => {
         </div>
 
         {/* Status Text */}
-        <div className="text-glass-primary text-lg font-medium">
+        <div className="text-lg font-medium text-glass-primary">
           {currentStep}
         </div>
 
