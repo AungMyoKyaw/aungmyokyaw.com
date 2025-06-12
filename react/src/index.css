@@ -750,6 +750,42 @@ body {
   }
 }
 
+/* 🎊 New Year's Theme - Confetti Animation */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+.confetti div {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.8) 25%,
+    rgba(255, 0, 150, 0.8) 50%,
+    rgba(0, 204, 255, 0.8) 75%
+  );
+  animation: confetti-fall 3s ease-in-out infinite;
+}
+
 /* 🌊 Interactive Liquid Cursor Trail - Lightweight */
 .cursor-trail {
   position: fixed;
@@ -845,7 +881,49 @@ body {
   transform: scale(0.95);
 }
 
-/* Ripple effect (removed - unused) */
+/* 🎯 Advanced Micro-Interactions */
+.card-micro-feedback {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-micro-feedback::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  opacity: 0;
+  transform: translateX(-100%) skewX(-15deg);
+  transition: all 0.6s ease;
+}
+
+.card-micro-feedback:hover::before {
+  opacity: 1;
+  transform: translateX(100%) skewX(-15deg);
+}
+
+/* Progressive disclosure animations */
+.progressive-reveal {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.progressive-reveal.in-view {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Magnetic button effect */
+.magnetic-button {
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.magnetic-button:hover {
+  transform: scale(1.05) translateZ(0);
+}
 
 /* 📖 Enhanced Text Contrast & Readability */
 @media (prefers-reduced-motion: reduce) {
@@ -1574,4 +1652,195 @@ button {
       0 0 30px rgba(34, 211, 238, 0.5),
       0 2px 4px rgba(0, 0, 0, 0.8);
   }
+}
+
+/* 🎯 High Contrast Mode Support */
+.high-contrast-mode {
+  --glass-primary: rgba(255, 255, 255, 0.2);
+  --glass-secondary: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.6);
+}
+
+.high-contrast-mode .liquid-glass,
+.high-contrast-mode .glass-card {
+  border-width: 2px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* 🎯 Static ring for reduced motion */
+.static-ring {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 🎯 Focus Management */
+.focus-visible:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/* 🎯 Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 🎯 Enhanced Status Indicators */
+.status-indicator-completed {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(16, 185, 129, 0.4));
+  border: 1px solid rgba(34, 197, 94, 0.6);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+}
+
+.status-indicator-progress {
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.3), rgba(245, 101, 101, 0.4));
+  border: 1px solid rgba(251, 146, 60, 0.6);
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.2);
+}
+
+/* 🎯 Progressive Reveal Classes */
+.progressive-reveal {
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.progressive-reveal.in-view {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 🎯 Motion Safe Utilities */
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe\:transition-none {
+    transition: none !important;
+  }
+
+  .motion-safe\:animate-none {
+    animation: none !important;
+  }
+}
+
+/* 🎯 Enhanced Loading States */
+.enhanced-loading-wrapper {
+  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+}
+
+.loading-glass-enhanced {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* 🎯 Typography Enhancements */
+.text-hierarchy-1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-hierarchy-2 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.text-hierarchy-3 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* 🎯 Interactive Feedback */
+.interactive-feedback {
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-feedback::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+  pointer-events: none;
+}
+
+.interactive-feedback:hover::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* 🎯 Semantic Color System */
+.color-semantic-success {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.color-semantic-warning {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.color-semantic-info {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* 🎯 Enhanced Grid System */
+.enhanced-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+/* 🎯 Smooth Transitions */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-bouncy {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 🎯 Glass Depth Variants */
+.glass-depth-1 {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.glass-depth-2 {
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.glass-depth-3 {
+  backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.12);
 }
