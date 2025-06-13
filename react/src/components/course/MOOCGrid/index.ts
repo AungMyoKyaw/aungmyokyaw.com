@@ -1,0 +1,1 @@
+export { MOOCGrid } from './MOOCGrid';

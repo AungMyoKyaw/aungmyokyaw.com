@@ -1,0 +1,1 @@
+export { MOOCCard } from './MOOCCard';
