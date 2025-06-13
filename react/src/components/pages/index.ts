@@ -1,2 +1,2 @@
-export { AppLoadingPage } from './AppLoadingPage';
-export { EducationPortfolioPage } from './EducationPortfolioPage';
+export { AppLoadingPage } from "./AppLoadingPage";
+export { EducationPortfolioPage } from "./EducationPortfolioPage";

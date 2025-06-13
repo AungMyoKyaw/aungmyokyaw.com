@@ -1,1 +1,1 @@
-export { CourseGrid } from './CourseGrid';
+export { CourseGrid } from "./CourseGrid";

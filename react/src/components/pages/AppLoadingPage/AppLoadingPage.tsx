@@ -1,6 +1,6 @@
-import type { LoadingState } from '../../../types';
-import { useAccessibility } from '../../../contexts';
-import { Background3DScene } from '../../3d';
+import type { LoadingState } from "../../../types";
+import { useAccessibility } from "../../../contexts";
+import { Background3DScene } from "../../3d";
 
 interface AppLoadingPageProps {
   loading: LoadingState;

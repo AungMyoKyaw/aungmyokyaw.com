@@ -1,1 +1,1 @@
-export { AppLoadingPage } from './AppLoadingPage';
+export { AppLoadingPage } from "./AppLoadingPage";

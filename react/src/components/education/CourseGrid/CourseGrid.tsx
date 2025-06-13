@@ -1,5 +1,5 @@
-import type { MOOCsData } from '../../../types';
-import { CourseCard } from '../CourseCard';
+import type { MOOCsData } from "../../../types";
+import { CourseCard } from "../CourseCard";
 
 interface CourseGridProps {
   data: MOOCsData;

@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import type { RevealState } from '../types';
+import type { RevealState } from "../types";
 
 export const useScrollBasedReveal = (): RevealState => {
   const [revealedItems, setRevealedItems] = useState<Set<number>>(new Set());

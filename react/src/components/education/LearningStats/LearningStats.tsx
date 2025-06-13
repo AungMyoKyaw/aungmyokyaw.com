@@ -1,5 +1,5 @@
-import type { StatsData } from '../../../types';
-import { useAccessibility } from '../../../contexts';
+import type { StatsData } from "../../../types";
+import { useAccessibility } from "../../../contexts";
 
 interface LearningStatsProps {
   stats: StatsData;

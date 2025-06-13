@@ -1,5 +1,5 @@
-import { useAccessibility } from '../../../contexts';
-import { GlassContainer } from '../../ui';
+import { useAccessibility } from "../../../contexts";
+import { GlassContainer } from "../../ui";
 
 interface SectionHeaderProps {
   title: string;
@@ -10,7 +10,10 @@ export const SectionHeader = ({ title, description }: SectionHeaderProps) => {
   const { highContrast } = useAccessibility();
 
   return (
-    <section className="mb-16 text-center" aria-labelledby="learning-journey-title">
+    <section
+      className="mb-16 text-center"
+      aria-labelledby="learning-journey-title"
+    >
       <GlassContainer className="mb-8 inline-block p-8">
         <h2
           id="learning-journey-title"

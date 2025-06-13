@@ -1,9 +1,9 @@
-import type { MOOCsData, ProfileData } from '../../../types';
-import { useAccessibility } from '../../../contexts';
-import { getCourseStats } from '../../../utils';
-import { Background3DScene, LiquidBackgroundEffects } from '../../3d';
-import { ProfileHeader, SectionHeader } from '../../layout';
-import { CourseGrid, LearningStats } from '../../education';
+import type { MOOCsData, ProfileData } from "../../../types";
+import { useAccessibility } from "../../../contexts";
+import { getCourseStats } from "../../../utils";
+import { Background3DScene, LiquidBackgroundEffects } from "../../3d";
+import { ProfileHeader, SectionHeader } from "../../layout";
+import { CourseGrid, LearningStats } from "../../education";
 
 interface PortfolioPageProps {
   data: MOOCsData;
@@ -106,7 +106,8 @@ export const PortfolioPage = ({ data, profile }: PortfolioPageProps) => {
                     highContrast ? "text-white/90" : "text-white/70"
                   }`}
                 >
-                  View complete repository with certificates and learning journey
+                  View complete repository with certificates and learning
+                  journey
                 </p>
               </div>
             </div>

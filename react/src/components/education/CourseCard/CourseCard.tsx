@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import type { MOOCCardProps } from '../../../types';
+import type { MOOCCardProps } from "../../../types";
 import { useRippleEffect } from "../../3d/LiquidBackgroundEffects";
-import { useAccessibility } from '../../../contexts';
-import { useScrollBasedReveal } from '../../../hooks';
-import { truncateCourseTitle } from '../../../utils';
-import { StatusBadge, TypeBadge } from '../../ui';
+import { useAccessibility } from "../../../contexts";
+import { useScrollBasedReveal } from "../../../hooks";
+import { truncateCourseTitle } from "../../../utils";
+import { StatusBadge, TypeBadge } from "../../ui";
 
 export const CourseCard = ({ mooc, index }: MOOCCardProps) => {
   const { createRipple } = useRippleEffect();
@@ -83,10 +83,7 @@ export const CourseCard = ({ mooc, index }: MOOCCardProps) => {
         </div>
 
         {/* Course type and details */}
-        <TypeBadge
-          type={mooc.type}
-          courseCount={mooc.courses?.length}
-        />
+        <TypeBadge type={mooc.type} courseCount={mooc.courses?.length} />
 
         {/* Bottom action area */}
         <div className="absolute bottom-4 left-6 right-6">

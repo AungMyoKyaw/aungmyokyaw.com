@@ -1,6 +1,10 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
-import { Background3DScene, LiquidBackgroundEffects, useRippleEffect } from "./components/3d";
+import {
+  Background3DScene,
+  LiquidBackgroundEffects,
+  useRippleEffect
+} from "./components/3d";
 
 // Types
 interface MOOCItem {

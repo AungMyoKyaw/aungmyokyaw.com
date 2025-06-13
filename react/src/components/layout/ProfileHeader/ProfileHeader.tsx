@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import type { ProfileHeaderProps } from '../../../types';
-import { useAccessibility } from '../../../contexts';
-import { getAvatarFallback } from '../../../utils';
+import type { ProfileHeaderProps } from "../../../types";
+import { useAccessibility } from "../../../contexts";
+import { getAvatarFallback } from "../../../utils";
 
 export const ProfileHeader = ({ profile }: ProfileHeaderProps) => {
   const { prefersReducedMotion, highContrast } = useAccessibility();

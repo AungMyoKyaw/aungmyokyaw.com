@@ -1,1 +1,1 @@
-export { EducationPortfolioPage } from './EducationPortfolioPage';
+export { EducationPortfolioPage } from "./EducationPortfolioPage";

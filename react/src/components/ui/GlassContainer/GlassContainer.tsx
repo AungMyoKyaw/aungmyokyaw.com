@@ -1,18 +1,18 @@
-import type { ReactNode } from 'react';
-import { useAccessibility } from '../../../contexts';
+import type { ReactNode } from "react";
+import { useAccessibility } from "../../../contexts";
 
 interface GlassContainerProps {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
-  as?: 'div' | 'button' | 'section' | 'header';
+  as?: "div" | "button" | "section" | "header";
 }
 
 export const GlassContainer = ({
   children,
-  className = '',
+  className = "",
   onClick,
-  as: Component = 'div'
+  as: Component = "div"
 }: GlassContainerProps) => {
   const { highContrast } = useAccessibility();
 
@@ -23,14 +23,14 @@ export const GlassContainer = ({
   `;
 
   const contrastClasses = highContrast
-    ? 'border-white/40 bg-black/60'
-    : 'border-white/20 bg-black/40';
+    ? "border-white/40 bg-black/60"
+    : "border-white/20 bg-black/40";
 
   const hoverClasses = onClick
     ? `cursor-pointer hover:border-white/30 hover:shadow-glass-hover ${
-        highContrast ? 'hover:bg-black/70' : 'hover:bg-black/50'
+        highContrast ? "hover:bg-black/70" : "hover:bg-black/50"
       }`
-    : '';
+    : "";
 
   return (
     <Component

@@ -1,4 +1,4 @@
-import type { MOOCsData, StatsData } from '../../types';
+import type { MOOCsData, StatsData } from "../../types";
 
 // Helper function to calculate total courses (including individual courses in bundles)
 export const getTotalCourses = (data: MOOCsData): number => {
@@ -25,7 +25,7 @@ export const getCompletedCourses = (data: MOOCsData): number => {
 
 // Helper function to calculate in-progress courses
 export const getInProgressCourses = (data: MOOCsData): number => {
-  return data.items.filter(item => item.status === "In Progress").length;
+  return data.items.filter((item) => item.status === "In Progress").length;
 };
 
 // Helper function to get all stats

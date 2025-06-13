@@ -1,16 +1,20 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import type { ReactNode } from 'react';
-import type { AccessibilityPreferences } from '../types';
+import { createContext, useContext, useEffect, useState } from "react";
+import type { ReactNode } from "react";
+import type { AccessibilityPreferences } from "../types";
 
 type AccessibilityContextType = AccessibilityPreferences;
 
-const AccessibilityContext = createContext<AccessibilityContextType | undefined>(undefined);
+const AccessibilityContext = createContext<
+  AccessibilityContextType | undefined
+>(undefined);
 
 interface AccessibilityProviderProps {
   children: ReactNode;
 }
 
-export const AccessibilityProvider = ({ children }: AccessibilityProviderProps) => {
+export const AccessibilityProvider = ({
+  children
+}: AccessibilityProviderProps) => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
 
@@ -50,7 +54,9 @@ export const AccessibilityProvider = ({ children }: AccessibilityProviderProps) 
 export const useAccessibility = () => {
   const context = useContext(AccessibilityContext);
   if (context === undefined) {
-    throw new Error('useAccessibility must be used within an AccessibilityProvider');
+    throw new Error(
+      "useAccessibility must be used within an AccessibilityProvider"
+    );
   }
   return context;
 };

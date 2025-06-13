@@ -1,14 +1,21 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import type { MOOCsData, LoadingState } from '../types';
-import { API_ENDPOINTS, LOADING_STAGES, ANIMATION_DURATIONS, DEMO_DATA } from '../utils';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import type { MOOCsData, LoadingState } from "../types";
+import {
+  API_ENDPOINTS,
+  LOADING_STAGES,
+  ANIMATION_DURATIONS,
+  DEMO_DATA
+} from "../utils";
 
 interface UseMOOCsDataFetchingResult {
   data: MOOCsData | null;
   loading: LoadingState;
 }
 
-export const useMOOCsDataFetching = (prefersReducedMotion: boolean): UseMOOCsDataFetchingResult => {
+export const useMOOCsDataFetching = (
+  prefersReducedMotion: boolean
+): UseMOOCsDataFetchingResult => {
   const [data, setData] = useState<MOOCsData | null>(null);
   const [loading, setLoading] = useState<LoadingState>({
     isLoading: true,
@@ -19,11 +26,11 @@ export const useMOOCsDataFetching = (prefersReducedMotion: boolean): UseMOOCsDat
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(prev => ({ ...prev, isLoading: true }));
+        setLoading((prev) => ({ ...prev, isLoading: true }));
 
         // Enhanced loading stages with progress
         for (const { stage, progress } of LOADING_STAGES) {
-          setLoading(prev => ({ ...prev, stage, progress }));
+          setLoading((prev) => ({ ...prev, stage, progress }));
           await new Promise((resolve) =>
             setTimeout(
               resolve,
@@ -38,7 +45,7 @@ export const useMOOCsDataFetching = (prefersReducedMotion: boolean): UseMOOCsDat
         setData(response.data);
       } catch (error) {
         console.error("Error fetching MOOCs data:", error);
-        setLoading(prev => ({ ...prev, stage: "Loading sample data..." }));
+        setLoading((prev) => ({ ...prev, stage: "Loading sample data..." }));
 
         // Set demo data on error
         setData(DEMO_DATA);
@@ -52,7 +59,7 @@ export const useMOOCsDataFetching = (prefersReducedMotion: boolean): UseMOOCsDat
               : ANIMATION_DURATIONS.FINAL_LOADING
           )
         );
-        setLoading(prev => ({ ...prev, isLoading: false }));
+        setLoading((prev) => ({ ...prev, isLoading: false }));
       }
     };
 
