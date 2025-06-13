@@ -2,10 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { AccessibilityPreferences } from '../types';
 
-interface AccessibilityContextType extends AccessibilityPreferences {
-  // This interface is intentionally empty to allow for future extensions
-  // while maintaining the same structure as AccessibilityPreferences
-}
+type AccessibilityContextType = AccessibilityPreferences;
 
 const AccessibilityContext = createContext<AccessibilityContextType | undefined>(undefined);
 
