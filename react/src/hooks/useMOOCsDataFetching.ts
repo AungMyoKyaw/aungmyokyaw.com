@@ -3,12 +3,12 @@ import axios from 'axios';
 import type { MOOCsData, LoadingState } from '../types';
 import { API_ENDPOINTS, LOADING_STAGES, ANIMATION_DURATIONS, DEMO_DATA } from '../utils';
 
-interface UseDataFetchingResult {
+interface UseMOOCsDataFetchingResult {
   data: MOOCsData | null;
   loading: LoadingState;
 }
 
-export const useDataFetching = (prefersReducedMotion: boolean): UseDataFetchingResult => {
+export const useMOOCsDataFetching = (prefersReducedMotion: boolean): UseMOOCsDataFetchingResult => {
   const [data, setData] = useState<MOOCsData | null>(null);
   const [loading, setLoading] = useState<LoadingState>({
     isLoading: true,

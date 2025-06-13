@@ -5,12 +5,12 @@ import { Background3DScene, LiquidBackgroundEffects } from '../../3d';
 import { ProfileHeader, SectionHeader } from '../../layout';
 import { CourseGrid, LearningStats } from '../../education';
 
-interface PortfolioPageProps {
+interface EducationPortfolioPageProps {
   data: MOOCsData;
   profile: ProfileData;
 }
 
-export const PortfolioPage = ({ data, profile }: PortfolioPageProps) => {
+export const EducationPortfolioPage = ({ data, profile }: EducationPortfolioPageProps) => {
   const { prefersReducedMotion, highContrast } = useAccessibility();
   const stats = getCourseStats(data);
 

@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import type { MOOCCardProps } from '../../../types';
-import { useRippleEffect } from "../../LiquidEffects";
+import { useRippleEffect } from "../../3d/LiquidBackgroundEffects";
 import { useAccessibility } from '../../../contexts';
-import { useProgressiveReveal } from '../../../hooks';
+import { useScrollBasedReveal } from '../../../hooks';
 import { truncateCourseTitle } from '../../../utils';
 import { StatusBadge, TypeBadge } from '../../ui';
 
-export const MOOCCard = ({ mooc, index }: MOOCCardProps) => {
+export const CourseCard = ({ mooc, index }: MOOCCardProps) => {
   const { createRipple } = useRippleEffect();
   const { prefersReducedMotion, highContrast } = useAccessibility();
-  const { revealedItems, registerElement } = useProgressiveReveal();
+  const { revealedItems, registerElement } = useScrollBasedReveal();
   const cardRef = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 

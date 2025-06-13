@@ -1,4 +1,4 @@
-import type { MOOCsData, StatsData } from '../types';
+import type { MOOCsData, StatsData } from '../../types';
 
 // Helper function to calculate total courses (including individual courses in bundles)
 export const getTotalCourses = (data: MOOCsData): number => {

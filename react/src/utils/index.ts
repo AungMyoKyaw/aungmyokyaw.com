@@ -1,2 +1,2 @@
-export * from './constants';
-export * from './courseHelpers';
+export * from './app/constants';
+export * from './course/helpers';

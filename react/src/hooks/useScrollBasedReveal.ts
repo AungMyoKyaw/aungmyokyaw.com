@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import type { RevealState } from '../types';
 
-export const useProgressiveReveal = (): RevealState => {
+export const useScrollBasedReveal = (): RevealState => {
   const [revealedItems, setRevealedItems] = useState<Set<number>>(new Set());
   const observerRef = useRef<IntersectionObserver | null>(null);
 

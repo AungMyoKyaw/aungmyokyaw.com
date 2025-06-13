@@ -1,11 +1,11 @@
 import type { StatsData } from '../../../types';
 import { useAccessibility } from '../../../contexts';
 
-interface CourseStatsProps {
+interface LearningStatsProps {
   stats: StatsData;
 }
 
-export const CourseStats = ({ stats }: CourseStatsProps) => {
+export const LearningStats = ({ stats }: LearningStatsProps) => {
   const { highContrast } = useAccessibility();
 
   const statItems = [

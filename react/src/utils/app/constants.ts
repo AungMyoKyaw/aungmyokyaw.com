@@ -1,4 +1,4 @@
-import type { ProfileData } from '../types';
+import type { ProfileData } from '../../types';
 
 export const PROFILE_DATA: ProfileData = {
   name: "Aung Myo Kyaw",

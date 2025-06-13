@@ -1,12 +1,12 @@
 import type { LoadingState } from '../../../types';
 import { useAccessibility } from '../../../contexts';
-import Scene3D from '../../Scene3D';
+import { Background3DScene } from '../../3d';
 
-interface LoadingPageProps {
+interface AppLoadingPageProps {
   loading: LoadingState;
 }
 
-export const LoadingPage = ({ loading }: LoadingPageProps) => {
+export const AppLoadingPage = ({ loading }: AppLoadingPageProps) => {
   const { prefersReducedMotion, highContrast } = useAccessibility();
 
   return (
@@ -16,7 +16,7 @@ export const LoadingPage = ({ loading }: LoadingPageProps) => {
       }`}
     >
       {/* 3D background scene - conditionally rendered */}
-      {!prefersReducedMotion && !highContrast && <Scene3D />}
+      {!prefersReducedMotion && !highContrast && <Background3DScene />}
 
       {/* Enhanced liquid glass loading container */}
       <div className="relative z-10 text-center">

@@ -188,8 +188,8 @@ const GlassShards = () => {
   );
 };
 
-// Main 3D Scene Component
-const Scene3D = () => {
+// Main 3D Background Scene Component
+const Background3DScene = () => {
   return (
     <div className="fixed inset-0 -z-10" style={{ pointerEvents: "none" }}>
       <Canvas
@@ -236,4 +236,4 @@ const Scene3D = () => {
   );
 };
 
-export default Scene3D;
+export default Background3DScene;

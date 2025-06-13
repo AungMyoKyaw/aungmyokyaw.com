@@ -1,1 +1,1 @@
-export { AccessibilityProvider, useAccessibility } from './AccessibilityContext';
+export { AccessibilityProvider, useAccessibility } from './AccessibilityPreferencesContext';

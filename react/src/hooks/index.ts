@@ -1,2 +1,2 @@
-export { useProgressiveReveal } from './useProgressiveReveal';
-export { useDataFetching } from './useDataFetching';
+export { useScrollBasedReveal } from './useScrollBasedReveal';
+export { useMOOCsDataFetching } from './useMOOCsDataFetching';

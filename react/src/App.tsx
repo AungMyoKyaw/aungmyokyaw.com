@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import axios from "axios";
-import Scene3D from "./components/Scene3D";
-import LiquidEffects, { useRippleEffect } from "./components/LiquidEffects";
+import { Background3DScene, LiquidBackgroundEffects, useRippleEffect } from "./components/3d";
 
 // Types
 interface MOOCItem {
@@ -550,7 +549,7 @@ const App = () => {
         className={`enhanced-loading-wrapper relative flex min-h-screen items-center justify-center overflow-hidden ${highContrast ? "bg-black" : ""} `}
       >
         {/* 3D background scene - conditionally rendered */}
-        {!prefersReducedMotion && !highContrast && <Scene3D />}
+        {!prefersReducedMotion && !highContrast && <Background3DScene />}
 
         {/* Enhanced liquid glass loading container */}
         <div className="relative z-10 text-center">
@@ -681,7 +680,7 @@ const App = () => {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* 3D Scene Background - conditional rendering */}
-      {!prefersReducedMotion && !highContrast && <Scene3D />}
+      {!prefersReducedMotion && !highContrast && <Background3DScene />}
 
       {/* Profile Header */}
       <ProfileHeader profile={profileData} />
@@ -890,7 +889,7 @@ const App = () => {
       </main>
 
       {/* ✨ Liquid Effects System - conditional */}
-      {!prefersReducedMotion && !highContrast && <LiquidEffects />}
+      {!prefersReducedMotion && !highContrast && <LiquidBackgroundEffects />}
     </div>
   );
 };

@@ -179,13 +179,13 @@ const useParticleSystem = (
   }, [elementRef, particleCount]);
 };
 
-// 🎯 Main Liquid Effects Component
-const LiquidEffects: React.FC = () => {
+// 🎯 Main Liquid Background Effects Component
+const LiquidBackgroundEffects: React.FC = () => {
   useCursorTrail();
   useThemeAdaptation();
 
   return null; // This component only provides effects
 };
 
-export default LiquidEffects;
+export default LiquidBackgroundEffects;
 export { useRippleEffect, useParticleSystem };
