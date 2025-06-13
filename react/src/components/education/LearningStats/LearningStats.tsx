@@ -45,11 +45,13 @@ export const LearningStats = ({ stats }: LearningStatsProps) => {
               : "border-white/15 bg-black/50 hover:border-white/25"
           }`}
         >
-          <span className={`block text-2xl font-bold ${item.color}`}>
+          <span
+            className={`block font-display text-3xl font-bold tracking-tight ${item.color}`}
+          >
             {item.value}
           </span>
           <p
-            className={`mt-1 text-sm drop-shadow-text-medium ${
+            className={`mt-1 font-primary text-sm font-medium drop-shadow-text-medium ${
               highContrast ? "text-white" : "text-white/95"
             }`}
           >
